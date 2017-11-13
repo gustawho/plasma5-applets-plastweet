@@ -2,7 +2,7 @@
 ## A small plasmoid to post tweets directly from your Plasma desktop (WiP)
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
 
-###Tentative Design
+### Tentative Design
 
 ![Current design](screenshots/plasmoid.png)
 
@@ -14,14 +14,14 @@ Login:
 ![Configuration window](screenshots/oauth-gui.png)
 
 
-###Requirements
+### Requirements
 * Twitcurl
 * liboauth
 * libcurl
 * Extra CMake Modules
 * KF5 & Plasma, obviously
 
-###Test (currently useless)
+### Test (currently useless)
 ```Bash
 git clone https://github.com/gustawho/plastweet.git
 cd plastweet && mkdir build && cd build
@@ -32,14 +32,14 @@ cd ..
 kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet package
 ```
 
-###Planned Features
+### Planned Features
 * Add pictures or video
 * Change the API settings if needed
 * Receive notifications on account interactions (mentions, for instance... Optional and still in discussion)
 * Integration with "Only Accounts"
 * Dialog to search and add GIFs
 
-###TODO:
+### TODO:
 * Convert text input to std::string (Twitcurl takes std::string, but QML only returns QString and similar)
 * Fix the connection between QML and C++
 * Add a progress bar
