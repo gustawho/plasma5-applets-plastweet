@@ -1,0 +1,16 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Plastweet
+Comment=Tweet directly from your Plasma desktop
+Icon=im-twitter
+Type=Service
+X-KDE-PluginInfo-Author=Gustavo Castro
+X-KDE-PluginInfo-Email=gustawho@gmail.com
+X-KDE-PluginInfo-License=GPL3
+X-KDE-PluginInfo-Name=com.gustawho.plastweet
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=gustawho.com
+X-KDE-ServiceTypes=Plasma/Applet
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+X-KDE-PluginInfo-Category=Online Services

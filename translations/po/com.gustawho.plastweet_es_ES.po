@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/gustawho/plastweet/issues\n"
+"POT-Creation-Date: 2017-11-13 02:12+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Gustavo Castro <gustawho@gmail.com>\n"
+"Language-Team: ES <gustawho@gmail.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "General"
+msgstr "General"
+
+msgid "What's happening?"
+msgstr "¿Qué está pasando?"
+
+msgid "Add photos or video"
+msgstr "Añadir fotos o vídeo"
+
+msgid "Tweet"
+msgstr "Twittear"
+
+msgid "Twitter API"
+msgstr "API de Twitter"
+
+msgid "Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
+msgstr "Los clientes de terceros tienen acceso limitado a Twitter con límites más estrictos, menos funciones y límites de tokens. Se recomienda usar tu propia llave. Primero debes registrar una nueva aplicación (si aún no tienes una) <a href='https://apps.twitter.com'>aquí</a>."
+
+msgid "Consumer Key (API Key):"
+msgstr "Consumer Key (API Key):"
+
+msgid "Consumer Secret (API Secret):"
+msgstr "Consumer Secret (API Secret):"
+
+msgid "Access Token:"
+msgstr "Access Token:"
+
+msgid "Access Token Secret:"
+msgstr "Access Token Secret:"

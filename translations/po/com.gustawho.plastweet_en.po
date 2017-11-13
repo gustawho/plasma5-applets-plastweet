@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: https://github.com/gustawho/plastweet/issues\n"
+"POT-Creation-Date: 2017-11-13 02:12+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "General"
+msgstr ""
+
+msgid "What's happening?"
+msgstr ""
+
+msgid "Add photos or video"
+msgstr ""
+
+msgid "Tweet"
+msgstr ""
+
+msgid "Twitter API"
+msgstr ""
+
+msgid "Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
+msgstr ""
+
+msgid "Consumer Key (API Key):"
+msgstr ""
+
+msgid "Consumer Secret (API Secret):"
+msgstr ""
+
+msgid "Access Token:"
+msgstr ""
+
+msgid "Access Token Secret:"
+msgstr ""
