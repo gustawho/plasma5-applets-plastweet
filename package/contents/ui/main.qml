@@ -20,6 +20,7 @@
 // TODO:
 // * Add a progressbar that informs about media upload
 // * Media preview interface
+// * Clear TextArea content if tweet is sent
 
 import QtQuick 2.3
 import QtQuick.Controls 1.4
