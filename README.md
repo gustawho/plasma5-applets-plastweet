@@ -16,7 +16,7 @@ The primary goal of this project is to bring the ability to quickly send tweets 
 * KF5 & Plasma, obviously
 
 ### Test
-Currently, tweeting is the only available feature.
+Currently, tweeting is the only available feature. Keep in mind that you need to register an application at [apps.twitter.com](https://apps.twitter.com) and set the appropriate values in plugin/backend.cpp.
 ```Bash
 git clone https://github.com/gustawho/plastweet.git
 cd plastweet && mkdir build && cd build
@@ -36,6 +36,7 @@ kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet pack
 
 ### TODO:
 * Add a progress bar
+* Tray indicator support
 * Native notifications support
 * Implement media upload
 * Safely store login details

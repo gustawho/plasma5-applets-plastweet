@@ -102,7 +102,7 @@ Item {
 			}
 		}
 	}
-
+	
 	PlasmaComponents.ToolButton {
 		id: keepOpen
 		anchors.left: parent.left
