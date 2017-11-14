@@ -3,19 +3,13 @@
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
 
 ### Tentative Design
-
 ![Current design](screenshots/plasmoid.png)
-
-Character limit:
 ![Normal text](screenshots/text.png)
 ![Character limit excheded](screenshots/charlimit.png)
-
-Login:
 ![Configuration window](screenshots/oauth-gui.png)
 
-
 ### Requirements
-* Twitcurl
+* [Twitcurl](https://github.com/swatkat/twitcurl)
 * liboauth
 * libcurl
 * Extra CMake Modules
