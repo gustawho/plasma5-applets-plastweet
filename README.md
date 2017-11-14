@@ -41,3 +41,5 @@ kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet pack
 * Implement media upload
 * Safely store login details
 * Spell checking support
+
+![Made with KDevelop](screenshots/made-with-kdevelop.png)
