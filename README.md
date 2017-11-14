@@ -31,7 +31,7 @@ kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet pack
 * Add pictures or video
 * Change the API settings if needed
 * Receive notifications on account interactions (mentions, for instance... Optional and still in discussion)
-* Integration with "Only Accounts"
+* Integration with "Online Accounts"
 * Dialog to search and add GIFs
 
 ### TODO:
