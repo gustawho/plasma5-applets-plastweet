@@ -35,8 +35,6 @@ kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet pack
 * Dialog to search and add GIFs
 
 ### TODO:
-* Convert text input to std::string (Twitcurl takes std::string, but QML only returns QString and similar)
-* Fix the connection between QML and C++
 * Add a progress bar
 * Native notifications support
 * Implement media upload
