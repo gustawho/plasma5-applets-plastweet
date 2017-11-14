@@ -38,13 +38,11 @@ Item {
 	anchors.fill: parent
 	Layout.minimumHeight: units.gridUnit * 10
 	Layout.minimumWidth: units.gridUnit * 15
-	
-	property string tweetMsg: plasmoid.nativeInterface.strString
-	
+
 	BackEnd {
 		id: backend
 	}
-	
+
 	RowLayout {
 		id: topRowLayout
 		z: 1
@@ -97,11 +95,8 @@ Item {
 			iconSource: "im-twitter"
 			tooltip: i18n("Tweet")
 			enabled: (inputQuery.text.length <= 0 || inputQuery.text.length >= 280) ? false : true
-			onClicked: { // FIXME
-				print(inputQuery.text);
-				tweetMsg = inputQuery.text;	// Test
-				print(tweetMsg)				//
-				plasmoid.nativeInterface.SendTweet(tweetMsg);
+			onClicked: {
+				backend.sendTweet(inputQuery.text);
 			}
 		}
 	}

@@ -24,24 +24,24 @@
 
 #include <string>
 #include <iostream>
-#include <twitcurl.h>
 using namespace std;
 
 #include <QObject>
 #include <QDebug>
 
+#include "twitcurl.h"
+
 class BackEnd : public QObject {
 	Q_OBJECT
-	Q_PROPERTY(QString originalStr READ originalStr WRITE sendTweet NOTIFY tweetSent)
 public:
 	explicit BackEnd(QObject *parent = 0);
 	~BackEnd();
-	QString originalStr;
-	string strString;
+	Q_INVOKABLE QString originalStr;
+	Q_INVOKABLE string strString;
 	bool execMain(string strString);
-	void sendTweet(QString originalStr);
+	Q_INVOKABLE int sendTweet(const QString &tweetTxt);
 signals:
-	void tweetSent();
+	Q_INVOKABLE void tweetSent();
 private:
 	twitCurl twitterObj;
 	string strConsumerKey;

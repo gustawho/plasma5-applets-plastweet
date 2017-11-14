@@ -46,12 +46,19 @@ BackEnd::BackEnd(QObject *parent) : QObject(parent) {
 BackEnd::~BackEnd() {
 }
 
-void BackEnd::sendTweet(QString originalStr) {
-	// FIXME: twitcurl takes std::string, but QML returns QString
-	string utf8_text = originalStr.toStdString();
-	BackEnd objMain;
-	bool bRet = objMain.execMain(utf8_text);
-	if (!bRet) cout << "ERROR!" << endl;
+int BackEnd::sendTweet(const QString &tweetTxt) {
+	// twitcurl takes std::string, but QML returns QString, so a conversion is necessary
+	string sysMsg;
+	sysMsg = "";
+	string utf8_text = tweetTxt.toUtf8().constData();
+	if(utf8_text.size() > 280) {
+		qDebug() << "ERROR: Tweet exceeds the character limit!";
+	} else {
+		BackEnd objMain;
+		bool bRet = objMain.execMain(utf8_text);
+		if (!bRet) cout << "ERROR!" << endl;
+	}
+	return 0;
 }
 
 bool BackEnd::execMain(string strString) {
