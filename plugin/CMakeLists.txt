@@ -1,12 +1,12 @@
-set(plasmoidplugin_SRCS
+set(plastweet_SRCS
 	backend.cpp
-	plasmoidplugin.cpp
+	plastweet.cpp
 	)
 
-add_library(plasmoidplugin SHARED ${plasmoidplugin_SRCS})
+add_library(plastweet SHARED ${plastweet_SRCS})
 
-target_link_libraries(plasmoidplugin Qt5::Quick KF5::Plasma KF5::I18n twitcurl oauth curl)
+target_link_libraries(plastweet Qt5::Quick KF5::Plasma KF5::I18n twitcurl oauth curl)
 
-install(TARGETS plasmoidplugin DESTINATION ${QML_INSTALL_DIR}/com/gustawho/plastweet)
+install(TARGETS plastweet DESTINATION ${QML_INSTALL_DIR}/com/gustawho/plastweet)
 
 install(FILES qmldir DESTINATION ${QML_INSTALL_DIR}/com/gustawho/plastweet)

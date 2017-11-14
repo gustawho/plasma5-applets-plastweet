@@ -97,6 +97,8 @@ Item {
 			enabled: (inputQuery.text.length <= 0 || inputQuery.text.length >= 280) ? false : true
 			onClicked: {
 				backend.sendTweet(inputQuery.text);
+				inputQuery.text = "";
+				inputQuery.focus = false
 			}
 		}
 	}
