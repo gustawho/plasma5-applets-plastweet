@@ -15,7 +15,8 @@ The primary goal of this project is to bring the ability to quickly send tweets 
 * Extra CMake Modules
 * KF5 & Plasma, obviously
 
-### Test (currently useless)
+### Test
+Currently, tweeting is the only available feature.
 ```Bash
 git clone https://github.com/gustawho/plastweet.git
 cd plastweet && mkdir build && cd build
