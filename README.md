@@ -35,6 +35,7 @@ kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet pack
 * Dialog to search and add GIFs
 
 ### TODO:
+* Handle errors
 * Add a progress bar
 * Tray indicator support
 * Native notifications support
