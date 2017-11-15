@@ -27,6 +27,7 @@
 import QtQuick 2.3
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.0 as QtControls
+import QtGraphicalEffects 1.0
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -34,20 +35,25 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 ColumnLayout {
 	id: generalConfigPage
-	
+
+	property alias cfg_txtConsKey: txtConsKey.text
+	property alias cfg_txtConsSecret: txtConsSecret.text
+	property alias cfg_txtToken: txtToken.text
+	property alias cfg_txtTokenSecret: txtTokenSecret.text
+
 	GridLayout {
 		id: authSection
 		Layout.fillWidth: true
 		columns: 2
 		anchors.top: parent.top
-		
+
 		QtControls.Label {
 			Layout.row: 0
 			Layout.column: 0
 			font.bold: true
 			text: i18n("Twitter API")
 		}
-		
+
 		QtControls.Label {
 			Layout.row: 1
 			Layout.column: 1
@@ -57,7 +63,7 @@ ColumnLayout {
 			text: i18n("Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>.")
 			onLinkActivated: Qt.openUrlExternally(link)
 		}
-		
+
 		QtControls.Label {
 			id: lblConsKey
 			Layout.row: 2
@@ -65,14 +71,14 @@ ColumnLayout {
 			Layout.alignment: Qt.AlignRight
 			text: i18n("Consumer Key (API Key):")
 		}
-		
+
 		QtControls.TextField {
 			id: txtConsKey
 			Layout.row: 2
 			Layout.column: 1
 			implicitWidth: 380
 		}
-		
+
 		QtControls.Label {
 			id: lblConsSecret
 			Layout.row: 3
@@ -80,14 +86,14 @@ ColumnLayout {
 			Layout.alignment: Qt.AlignRight
 			text: i18n("Consumer Secret (API Secret):")
 		}
-		
+
 		QtControls.TextField {
 			id: txtConsSecret
 			Layout.row: 3
 			Layout.column: 1
 			implicitWidth: 380
 		}
-		
+
 		QtControls.Label {
 			id: lblToken
 			Layout.row: 4
@@ -95,14 +101,14 @@ ColumnLayout {
 			Layout.alignment: Qt.AlignRight
 			text: i18n("Access Token:")
 		}
-		
+
 		QtControls.TextField {
 			id: txtToken
 			Layout.row: 4
 			Layout.column: 1
 			implicitWidth: 380
 		}
-		
+
 		QtControls.Label {
 			id: lblTokenSecret
 			Layout.row: 5
@@ -110,7 +116,7 @@ ColumnLayout {
 			Layout.alignment: Qt.AlignRight
 			text: i18n("Access Token Secret:")
 		}
-		
+
 		QtControls.TextField {
 			id: txtTokenSecret
 			Layout.row: 5
@@ -118,5 +124,48 @@ ColumnLayout {
 			implicitWidth: 380
 		}
 	}
+	ColumnLayout {
+		anchors.top: authSection.bottom
+		anchors.topMargin: 15
+		anchors.horizontalCenter: parent.horizontalCenter
 
+		QtControls.Label {
+			anchors.horizontalCenter: parent.horizontalCenter
+			text: "Logged in as: "
+		}
+
+		Item {
+			anchors.horizontalCenter: parent.horizontalCenter
+			width: 64
+			height: width
+
+			Rectangle {
+				id: mask
+				width: parent.width
+				height: width
+				radius: 50
+				visible: false
+			}
+
+			Image {
+				id: avatar
+				anchors.fill: parent
+				sourceSize.width: parent.width
+				sourceSize.height: parent.width
+				fillMode: Image.Stretch
+				source: "https://twitter.com/" + username.text +"/profile_image?size=original"
+				layer.enabled: true
+				layer.effect: OpacityMask {
+					maskSource: mask
+				}
+			}
+		}
+		
+		// FIXME: Get username when logged in
+		QtControls.Label {
+			anchors.horizontalCenter: parent.horizontalCenter
+			id: username
+			text: "gustawho"
+		}
+	}
 }

@@ -37,9 +37,11 @@ public:
 	explicit BackEnd(QObject *parent = 0);
 	~BackEnd();
 	Q_INVOKABLE QString originalStr;
+	Q_INVOKABLE QString mediaPath;
+	Q_INVOKABLE int mediaCheck;
 	Q_INVOKABLE string strString;
-	bool execMain(string strString);
-	Q_INVOKABLE int sendTweet(const QString &tweetTxt);
+	bool execMain(string strString, string strFilePath);
+	Q_INVOKABLE int sendTweet(const QString &tweetTxt, const QString &tweetImg);
 signals:
 	Q_INVOKABLE void tweetSent();
 private:

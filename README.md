@@ -9,7 +9,7 @@ The primary goal of this project is to bring the ability to quickly send tweets 
 ![Configuration window](screenshots/oauth-gui.png)
 
 ### Requirements
-* [Twitcurl](https://github.com/swatkat/twitcurl)
+* [Twitcurl](https://github.com/gustawho/twitcurl)
 * liboauth
 * libcurl
 * Extra CMake Modules
@@ -26,9 +26,10 @@ sudo make install
 cd ..
 kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet package
 ```
+Keep in mind that in order to use the media upload feature, you need to use the Twitcurl version linked in the previous section.
 
 ### Planned Features
-* Add pictures or video
+* Add multiple pictures or video
 * Change the API settings if needed
 * Receive notifications on account interactions (mentions, for instance... Optional and still in discussion)
 * Integration with "Online Accounts"
@@ -40,7 +41,7 @@ kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet pack
 * Add a progress bar
 * Tray indicator support
 * Native notifications support
-* Implement media upload
+* Implement multiple media upload
 * Safely store login details
 * Spell checking support
 

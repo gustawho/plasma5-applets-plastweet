@@ -34,6 +34,11 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 ColumnLayout {
 	id: notificationsConfigPage
 	
+	property alias cfg_mentionsBox: mentionsBox.checked
+	property alias cfg_rtBox: rtBox.checked
+	property alias cfg_likesBox: likesBox.checked
+	property alias cfg_syncTimeSpinBox: syncTimeSpinBox.value
+	
 	GridLayout {
 		id: notificationsGrid
 		Layout.fillWidth: true
@@ -98,7 +103,6 @@ ColumnLayout {
 			id: syncTimeSpinBox
 			minimumValue: 1
 			suffix: i18n(" min")
-			value: 5
 		}
 	}
 
