@@ -13,5 +13,4 @@ public:
     void registerTypes(const char *uri);
 };
 
-#endif // PLASTWEET_H
-
+#endif

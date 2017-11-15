@@ -1,7 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Plastweet: Traducción al español (es_ES)
+# Copyright (C) 2017 Este archivo es parte de Plastweet
+# Este archivo se distribuye con la misma licencia que Plastweet.
+# Gustavo Castro <gustawho@gmail.com>, 2017.
 #
 #, fuzzy
 msgid ""
@@ -19,6 +19,21 @@ msgstr ""
 
 msgid "General"
 msgstr "General"
+
+msgid "Notifications"
+msgstr "Notificaciones"
+
+msgid "Mentions and replies"
+msgstr "Menciones y respuestas"
+
+msgid "Retweets"
+msgstr "Re-tweets"
+
+msgid "Likes"
+msgstr "Favoritos"
+
+msgid "Sync interval:"
+msgstr "Intervalo de sincronización"
 
 msgid "What's happening?"
 msgstr "¿Qué está pasando?"

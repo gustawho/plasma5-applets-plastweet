@@ -33,6 +33,7 @@ kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet pack
 * Receive notifications on account interactions (mentions, for instance... Optional and still in discussion)
 * Integration with "Online Accounts"
 * Dialog to search and add GIFs
+* Automatic threads
 
 ### TODO:
 * Handle errors

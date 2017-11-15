@@ -1,26 +1,27 @@
 /***************************************************************************
+
 	Copyright 2017 Gustavo Castro <gustawho@gmail.com>
 	
 	This file is part of Plastweet.
 
-	Foobar is free software: you can redistribute it and/or modify
+	Plastweet is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
 
-	Foobar is distributed in the hope that it will be useful,
+	Plastweet is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+	along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
+
 ***************************************************************************/
 
 // TODO:
 // * Add a progressbar that informs about media upload
 // * Media preview interface
-// * Clear TextArea content if tweet is sent
 
 import QtQuick 2.3
 import QtQuick.Controls 1.4
@@ -38,6 +39,7 @@ Item {
 	anchors.fill: parent
 	Layout.minimumHeight: units.gridUnit * 10
 	Layout.minimumWidth: units.gridUnit * 15
+	Layout.maximumHeight: units.gridUnit * 10
 
 	BackEnd {
 		id: backend
@@ -70,7 +72,7 @@ Item {
 				text: inputQuery.text.length
 				font.italic: true
 				visible: inputQuery.text.length <= 0 ? false : true
-				color: inputQuery.text.length >= 280 ? "red" : "grey"
+				color: inputQuery.text.length >= 280 ? "red" : theme.viewTextColor
 				font.bold: inputQuery.text.length >= 280 ? true : false
 			}
 		}
@@ -82,6 +84,13 @@ Item {
 		anchors.right: parent.right
 		Layout.fillWidth: true
 		Layout.fillHeight: true
+		
+		// TODO: Implement GIF browse/upload
+		PlasmaComponents.Button {
+			id: browseGifs
+			iconSource: "image-gif"
+			tooltip: i18n("Add a GIF")
+		}
 		
 		// TODO: Implement picture/video upload
 		PlasmaComponents.Button {
