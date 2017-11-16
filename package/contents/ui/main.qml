@@ -40,7 +40,8 @@ Item {
 	anchors.fill: parent
 	Layout.minimumHeight: units.gridUnit * 10
 	Layout.minimumWidth: units.gridUnit * 15
-	Layout.preferredHeight: units.gridUnit * 15
+	Layout.maximumHeight: units.gridUnit * 10
+	Layout.preferredWidth: units.gridUnit * 15
 	
 	property string filepath: ""
 

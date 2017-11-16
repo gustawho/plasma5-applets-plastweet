@@ -33,25 +33,30 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
+import com.gustawho.plastweet 1.0
+
 ColumnLayout {
 	id: generalConfigPage
 
 	property alias cfg_txtConsKey: txtConsKey.text
 	property alias cfg_txtConsSecret: txtConsSecret.text
-	property alias cfg_txtToken: txtToken.text
-	property alias cfg_txtTokenSecret: txtTokenSecret.text
 
+	BackEnd {
+		id: backend
+	}
+	
 	GridLayout {
 		id: authSection
 		Layout.fillWidth: true
 		columns: 2
-		anchors.top: parent.top
+		flow: GridLayout.TopToBottom
+		anchors.fill: parent
 
 		QtControls.Label {
 			Layout.row: 0
 			Layout.column: 0
 			font.bold: true
-			text: i18n("Twitter API")
+			text: i18n("API Settings")
 		}
 
 		QtControls.Label {
@@ -60,8 +65,15 @@ ColumnLayout {
 			Layout.fillWidth: true
 			wrapMode: Text.Wrap
 			elide: Text.ElideLeft
+			rightPadding: 22
+			linkColor: theme.linkColor
 			text: i18n("Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>.")
 			onLinkActivated: Qt.openUrlExternally(link)
+			MouseArea {
+				anchors.fill: parent
+				acceptedButtons: Qt.NoButton
+				cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+			}
 		}
 
 		QtControls.Label {
@@ -94,78 +106,109 @@ ColumnLayout {
 			implicitWidth: 380
 		}
 
-		QtControls.Label {
-			id: lblToken
-			Layout.row: 4
-			Layout.column: 0
-			Layout.alignment: Qt.AlignRight
-			text: i18n("Access Token:")
-		}
-
-		QtControls.TextField {
-			id: txtToken
-			Layout.row: 4
-			Layout.column: 1
-			implicitWidth: 380
-		}
-
-		QtControls.Label {
-			id: lblTokenSecret
+		Rectangle {
 			Layout.row: 5
 			Layout.column: 0
-			Layout.alignment: Qt.AlignRight
-			text: i18n("Access Token Secret:")
+			height: 48
+			color: "transparent"
 		}
-
-		QtControls.TextField {
-			id: txtTokenSecret
-			Layout.row: 5
-			Layout.column: 1
-			implicitWidth: 380
-		}
-	}
-	ColumnLayout {
-		anchors.top: authSection.bottom
-		anchors.topMargin: 15
-		anchors.horizontalCenter: parent.horizontalCenter
 
 		QtControls.Label {
-			anchors.horizontalCenter: parent.horizontalCenter
-			text: "Logged in as: "
+			Layout.row: 6
+			Layout.column: 0
+			font.bold: true
+			text: i18n("Login")
 		}
-
-		Item {
-			anchors.horizontalCenter: parent.horizontalCenter
-			width: 64
-			height: width
-
-			Rectangle {
-				id: mask
-				width: parent.width
-				height: width
-				radius: 50
-				visible: false
-			}
-
-			Image {
-				id: avatar
-				anchors.fill: parent
-				sourceSize.width: parent.width
-				sourceSize.height: parent.width
-				fillMode: Image.Stretch
-				source: "https://twitter.com/" + username.text +"/profile_image?size=original"
-				layer.enabled: true
-				layer.effect: OpacityMask {
-					maskSource: mask
-				}
+		
+		QtControls.Button {
+			id: tokenBtn
+			Layout.row: 7
+			Layout.column: 0
+			text: i18n("Generate token")
+			onClicked: {
+				pinUrl.text = backend.AuthLink;
+				console.log(pinUrl.text)
 			}
 		}
 		
-		// FIXME: Get username when logged in
 		QtControls.Label {
-			anchors.horizontalCenter: parent.horizontalCenter
-			id: username
-			text: "gustawho"
+			id: pinUrl
+			Layout.row: 8
+			Layout.column: 0
+			linkColor: theme.linkColor
+			onLinkActivated: Qt.openUrlExternally(link)
+			MouseArea  {
+				anchors.fill: parent
+				acceptedButtons: Qt.NoButton
+				cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+			}
+		}
+		
+		QtControls.TextField {
+			id: pinTextField
+			Layout.row: 9
+			Layout.column: 0
+			implicitWidth: tokenBtn.width
+			validator: RegExpValidator { regExp: /^[0-9]{7}$/ }
+			placeholderText: "0000000"
+			maximumLength: 7
+			font.pointSize: 14
+			font.family: "Hack"
+			horizontalAlignment: TextInput.AlignHCenter
+		}
+		
+		QtControls.Button {
+			id: loginBtn
+			Layout.row: 10
+			Layout.column: 0
+			implicitWidth: userField.width
+			text: i18n("Login")
+		}
+		
+		RowLayout {
+			Layout.row: 7
+			Layout.column: 1
+			Layout.rowSpan: 4
+			
+			QtControls.Label {
+				anchors.verticalCenter: parent.verticalCenter
+				text: "Logged in as: "
+			}
+			
+			Item {
+				anchors.verticalCenter: parent.verticalCenter
+				width: 48
+				height: width
+				
+				Rectangle {
+					id: mask
+					width: parent.width
+					height: width
+					radius: 50
+					visible: false
+				}
+				
+				Image {
+					id: avatar
+					anchors.fill: parent
+					sourceSize.width: parent.width
+					sourceSize.height: parent.width
+					fillMode: Image.Stretch
+					source: "https://twitter.com/" + username.text +"/profile_image?size=original"
+					layer.enabled: true
+					layer.effect: OpacityMask {
+						maskSource: mask
+					}
+				}
+			}
+			
+			// FIXME: Get username when logged in
+			QtControls.Label {
+				anchors.verticalCenter: parent.verticalCenter
+				id: username
+				text: "gustawho"
+			}
 		}
 	}
+	
 }

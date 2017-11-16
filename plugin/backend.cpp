@@ -30,6 +30,8 @@ using namespace std;
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDebug>
+// #include <QDir>
+// #include <QStandardPaths>
 
 #include "backend.h"
 
@@ -37,6 +39,30 @@ using namespace std;
 BackEnd::BackEnd(QObject *parent) : QObject(parent) {
 	// Given that OAuth login isn't implemented yet, you have to register your own app
 	// and add the credentials here
+// 	string appData = "/plastweet/config/";
+// 	QString qAppData = QString::fromStdString(appData);
+// 	QString writableLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+// 	QDir().mkpath(writableLocation.append(qAppData));
+// 	
+// 	string configDir = writableLocation.toUtf8().constData();
+// 		
+// 	myConsumerKey = configDir.append(appData).append("consumerKey.txt");
+// 	myConsumerSecret = configDir.append(appData).append("consumerSecret.txt");
+// 	myTokenKeyFile = configDir.append(appData).append("tokenKey.txt");
+// 	myTokenSecretFile = configDir.append(appData).append("tokenSecret.txt");
+// 	
+// 	ifstream getTokenKey(myTokenKeyFile);
+// 	ifstream getTokenSecret(myTokenSecretFile);
+// 	
+// 	stringstream streamKey;
+// 	stringstream streamSecret;
+// 	
+// 	streamKey << getTokenKey.rdbuf();
+// 	streamSecret << getTokenSecret.rdbuf();
+// 	
+// 	string keyStr = streamKey.str();
+// 	string secretStr = streamSecret.str();
+
 	strConsumerKey       = "";
 	strConsumerSecret    = "";
 	strAccessTokenKey    = "";
@@ -45,6 +71,73 @@ BackEnd::BackEnd(QObject *parent) : QObject(parent) {
 
 BackEnd::~BackEnd() {
 }
+
+// OAuth login
+// int BackEnd::getAuthLink(const QString &username, const QString &password) {
+// 	twitCurl twitterObj;
+// 	
+// 	string utf8_user = username.toUtf8().constData();
+// 	string utf8_pass = password.toUtf8().constData();
+// 	
+// 	twitterObj.setTwitterUsername( utf8_user );
+// 	twitterObj.setTwitterUsername( utf8_pass );
+// 
+// 	// Read pre-set consumer credentials
+// 	twitterObj.getOAuth().setConsumerKey(strConsumerKey);
+// 	twitterObj.getOAuth().setConsumerSecret(strConsumerSecret);
+// 	
+// 	// Set token files
+// 	string myOAuthAccessTokenKey = "";
+// 	string myOAuthAccessTokenSecret = "";
+// 	ifstream newTokenKeyFile;
+// 	ifstream newTokenSecretFile;
+// 	
+// 	newTokenKeyFile.open(myTokenKeyFile);
+// 	newTokenSecretFile.open(myTokenSecretFile);
+// 	
+// 	char tmpBuf[1024];
+// 	
+// 	memset( tmpBuf, 0, 1024 );
+// 	newTokenKeyFile >> tmpBuf;
+// 	myOAuthAccessTokenKey = tmpBuf;
+// 	
+// 	memset( tmpBuf, 0, 1024 );
+// 	newTokenSecretFile >> tmpBuf;
+// 	myOAuthAccessTokenSecret = tmpBuf;
+// 	
+// 	newTokenKeyFile.close();
+// 	newTokenSecretFile.close();
+// 	
+// 	// Check if files are empty
+// 	if( myOAuthAccessTokenKey.size() && myOAuthAccessTokenSecret.size() ) {
+// 		printf( "\nUsing:\nKey: %s\nSecret: %s\n\n", myOAuthAccessTokenKey.c_str(), myOAuthAccessTokenSecret.c_str() );
+// 		twitterObj.getOAuth().setOAuthTokenKey( myOAuthAccessTokenKey );
+// 		twitterObj.getOAuth().setOAuthTokenKey( myOAuthAccessTokenKey );
+// 	} else {
+// 		string authUrl;
+// 		twitterObj.oAuthRequestToken(authUrl);
+// 		twitterObj.oAuthHandlePIN(authUrl);
+// 		twitterObj.oAuthAccessToken();
+// 		twitterObj.getOAuth().getOAuthTokenKey( myOAuthAccessTokenKey );
+// 		twitterObj.getOAuth().getOAuthTokenSecret( myOAuthAccessTokenSecret );
+// 		
+// 		ofstream saveTokenKey;
+// 		ofstream saveTokenSecret;
+// 		
+// 		saveTokenKey.open(myTokenKeyFile);
+// 		saveTokenSecret.open(myTokenSecretFile);
+// 		
+// 		saveTokenKey.clear();
+// 		saveTokenSecret.clear();
+// 		
+// 		saveTokenKey << myOAuthAccessTokenKey.c_str();
+// 		saveTokenSecret << myOAuthAccessTokenSecret.c_str();
+// 		
+// 		saveTokenKey.close();
+// 		saveTokenSecret.close();
+// 	}
+// 	return 0;
+// }
 
 int BackEnd::sendTweet(const QString &tweetTxt, const QString &tweetImg) {
 	// twitcurl takes std::string, but QML returns QString, so a conversion is necessary
