@@ -38,13 +38,13 @@ msgstr ""
 msgid "What's happening?"
 msgstr ""
 
-msgid "Add photos or video"
+msgid "Add a picture"
 msgstr ""
 
 msgid "Tweet"
 msgstr ""
 
-msgid "Twitter API"
+msgid "API Settings"
 msgstr ""
 
 msgid "Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
@@ -60,4 +60,13 @@ msgid "Access Token:"
 msgstr ""
 
 msgid "Access Token Secret:"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Generate token"
+msgstr ""
+
+msgid "Account"
 msgstr ""

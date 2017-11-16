@@ -38,14 +38,14 @@ msgstr "Intervalo de sincronización"
 msgid "What's happening?"
 msgstr "¿Qué está pasando?"
 
-msgid "Add photos or video"
-msgstr "Añadir fotos o video"
+msgid "Add a picture"
+msgstr "Añadir una imagen"
 
 msgid "Tweet"
 msgstr "Twittear"
 
-msgid "Twitter API"
-msgstr "API de Twitter"
+msgid "API Settings"
+msgstr "Ajustes de la API"
 
 msgid "Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
 msgstr "Los clientes de terceros tienen acceso limitado a Twitter con límites más estrictos, menos funciones y límites de tokens. Se recomienda usar tu propia llave. Primero debes registrar una nueva aplicación (si aún no tienes una) <a href='https://apps.twitter.com'>aquí</a>."
@@ -61,3 +61,12 @@ msgstr "Access Token:"
 
 msgid "Access Token Secret:"
 msgstr "Access Token Secret:"
+
+msgid "Login"
+msgstr "Iniciar sesión"
+
+msgid "Generate token"
+msgstr "Generar token"
+
+msgid "Account"
+msgstr "Cuenta"
