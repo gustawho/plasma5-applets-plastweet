@@ -21,7 +21,6 @@
 
 // TODO:
 // * Add a progressbar that informs about media upload
-// * Media preview interface
 
 import QtQuick 2.3
 import QtQuick.Controls 1.4
@@ -125,6 +124,7 @@ Item {
 			enabled: (inputQuery.text.length <= 0 || inputQuery.text.length >= 280) ? false : true
 			onClicked: {
 				backend.sendTweet(inputQuery.text, filepath.toString());
+				filepath = "";
 				inputQuery.text = "";
 				inputQuery.focus = false;
 				previewFadeOut.running = true;
@@ -163,21 +163,21 @@ Item {
 	}
 	
 	PropertyAnimation {
-		id: previewFadeIn
+		id: previewFadeIn;
 		target: imgPreview;
-		property: "visible"
-		to: true
-		duration: 150
-		running: false
+		property: "visible";
+		to: true;
+		duration: 150;
+		running: false;
 	}
 	
 	PropertyAnimation {
-		id: previewFadeOut
+		id: previewFadeOut;
 		target: imgPreview;
-		property: "visible"
-		to: false
-		duration: 50
-		running: false
+		property: "visible";
+		to: false;
+		duration: 50;
+		running: false;
 	}
 	
 	Item {
@@ -214,10 +214,7 @@ Item {
 				anchors.verticalCenter: parent.verticalCenter
 				onClicked: {
 					fileDialog.close();
-					console.log("Archivo: " + fileDialog.fileUrl);
-					console.log("filepath: " + filepath);
 					filepath = "";
-					console.log("filepath after: " + filepath);
 					previewFadeOut.running = true;
 					restoreSize.running = true;
 				}

@@ -38,6 +38,7 @@ Keep in mind that in order to use the media upload feature, you need to use the 
 * Integration with "Online Accounts"
 * Dialog to search and add GIFs
 * Automatic threads
+* Drafts
 
 ### TODO:
 * Handle errors

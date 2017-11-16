@@ -21,7 +21,6 @@
 
 // TODO:
 // * Actually do what is supposed to!
-// * Fix layout
 
 import QtQuick 2.3
 import QtQuick.Layouts 1.0

@@ -21,7 +21,6 @@
 
 // TODO:
 // * Actually do what is supposed to!
-// * Change the elements to use OAuth login
 // * Show username and avatar of logged account
 
 import QtQuick 2.3
