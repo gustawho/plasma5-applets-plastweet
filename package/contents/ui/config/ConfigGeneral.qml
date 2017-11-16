@@ -37,7 +37,8 @@ import com.gustawho.plastweet 1.0
 
 ColumnLayout {
 	id: generalConfigPage
-
+	
+	// FIXME: This was set to test the save/apply function
 	property alias cfg_txtConsKey: txtConsKey.text
 	property alias cfg_txtConsSecret: txtConsSecret.text
 
@@ -126,8 +127,7 @@ ColumnLayout {
 			Layout.column: 0
 			text: i18n("Generate token")
 			onClicked: {
-				pinUrl.text = backend.AuthLink;
-				console.log(pinUrl.text)
+				pinUrl.text = backend.AuthLink; // FIXME
 			}
 		}
 		
@@ -153,7 +153,7 @@ ColumnLayout {
 			placeholderText: "0000000"
 			maximumLength: 7
 			font.pointSize: 14
-			font.family: "Hack"
+			font.family: "Hack" // FIXME: set a standard value
 			horizontalAlignment: TextInput.AlignHCenter
 		}
 		
