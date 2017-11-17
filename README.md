@@ -3,11 +3,13 @@
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
 
 ### Tentative Design
-![Current design](screenshots/preview.gif)
-![Default view](screenshots/plasmoid.png)
-![Normal text](screenshots/text.png)
-![Character limit excheded](screenshots/charlimit.png)
-![Configuration window](screenshots/oauth-gui.png)
+<p align="center">
+<img src="screenshots/preview.gif">
+<img src="screenshots/plasmoid.png">
+<img src="screenshots/text.png">
+<img src="screenshots/charlimit.png">
+<img src="screenshots/oauth-gui.png">
+</p>
 
 ### Requirements
 * [Twitcurl](https://github.com/gustawho/twitcurl)
