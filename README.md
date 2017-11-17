@@ -3,10 +3,8 @@
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
 
 ### Tentative Design
-<blockquote class="twitter-video" data-lang="en"><p lang="und" dir="ltr"><a href="https://t.co/KQtYrypmQD">pic.twitter.com/KQtYrypmQD</a></p>&mdash; allyourbasearebelongtous 🦕 (@gustawho) <a href="https://twitter.com/gustawho/status/930994994806251520?ref_src=twsrc%5Etfw">November 16, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-![Current design](screenshots/plasmoid.png)
+![Current design](screenshots.preview.gif)
+![Default view](screenshots/plasmoid.png)
 ![Normal text](screenshots/text.png)
 ![Character limit excheded](screenshots/charlimit.png)
 ![Configuration window](screenshots/oauth-gui.png)
