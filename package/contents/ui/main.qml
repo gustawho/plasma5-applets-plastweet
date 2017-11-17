@@ -43,6 +43,7 @@ Item {
 	Layout.preferredWidth: units.gridUnit * 15
 	
 	property string filepath: ""
+	property string tweetMsg: ""
 
 	BackEnd {
 		id: backend
@@ -159,9 +160,34 @@ Item {
 			id: sendTweetButton
 			iconSource: "im-twitter"
 			tooltip: i18n("Tweet")
-			enabled: (inputQuery.text.length <= 0 || inputQuery.text.length >= 280) ? false : true
+			
+			// enabled: (inputQuery.text.length <= 0 || inputQuery.text.length >= 280) ? false : true
+			function validateContent() {
+				var enableButton = false
+				if(inputQuery.text.length <= 0 || inputQuery.text.length >= 280) {
+					if(filepath == "") {
+						enableButton = false
+					} else {
+						enableButton = true
+					}
+				} else {
+					enableButton = true
+				}
+				return enableButton
+			}
+			enabled: validateContent()
+			
 			onClicked: {
-				backend.sendTweet(inputQuery.text, filepath.toString());
+				function checkText() {
+					var tweetMsg = ""
+					if(inputQuery.text == "") {
+						tweetMsg = " "
+						backend.sendTweet(tweetMsg, filepath.toString());
+					} else {
+						backend.sendTweet(inputQuery.text, filepath.toString());
+					}
+				}
+				checkText();
 				filepath = "";
 				inputQuery.text = "";
 				inputQuery.focus = false;
