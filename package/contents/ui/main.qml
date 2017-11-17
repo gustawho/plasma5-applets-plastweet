@@ -57,13 +57,52 @@ Item {
 		PlasmaComponents.TextArea {
 			id: inputQuery
 			implicitHeight: parent.minimumHeight
-			implicitWidth: parent.minimumHeight
+			implicitWidth: parent.minimumWidth
 			wrapMode: TextEdit.Wrap
 			anchors.top: parent.top
 			anchors.left: parent.left
 			Layout.fillWidth: true
 			placeholderText: i18n("What's happening?")
 			textColor: text.length >= 280 ? "red" : theme.viewTextColor
+			Rectangle {
+				id: dragIcon
+				width: 110
+				height: 100
+				color: "transparent"
+				border.color: theme.viewTextColor
+				anchors.verticalCenter: parent.verticalCenter
+				anchors.horizontalCenter: parent.horizontalCenter
+				border.width: 1
+				radius: 2
+				visible: false
+				PlasmaComponents.Label {
+					anchors.verticalCenter: parent.verticalCenter
+					anchors.horizontalCenter: parent.horizontalCenter
+					color: theme.viewTextColor
+					text: i18n("Drop your image")
+				}
+			}
+			DropArea {
+				id: dropArea;
+				anchors.fill: parent;
+				onEntered: {
+					inputQuery.placeholderText = "";
+					dragIcon.visible = true;
+				}
+				onDropped: {
+					inputQuery.placeholderText = i18n("What's happening?");
+					dragIcon.visible = false;
+					imgPreview.source = drag.source; // FIXME
+					filepath = drag.source;
+					changeSizeAnimation.running = true;
+					previewFadeIn.running = true;
+				}
+				onExited: {
+					dragIcon.visible = false;
+					inputQuery.placeholderText = i18n("What's happening?");
+				}
+			}
+
 			PlasmaComponents.Label {
 				id: charCounter
 				anchors.bottom: parent.bottom
@@ -96,12 +135,11 @@ Item {
 			id: fileDialog
 			title: "Select an image to upload"
 			folder: shortcuts.pictures
-			nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
+			nameFilters: [ "Image files (*.jpg *.png *.gif *.bmp)", "All files (*)" ]
 			onAccepted: {
 				changeSizeAnimation.running = true;
 				previewFadeIn.running = true;
 				imgPreview.source = fileDialog.fileUrl;
-				console.log(filepath);
 				filepath = fileDialog.fileUrl;
 			}
 			onRejected: {
