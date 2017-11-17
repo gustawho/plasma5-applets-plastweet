@@ -3,7 +3,7 @@
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
 
 ### Tentative Design
-![Current design](screenshots.preview.gif)
+![Current design](screenshots/preview.gif)
 ![Default view](screenshots/plasmoid.png)
 ![Normal text](screenshots/text.png)
 ![Character limit excheded](screenshots/charlimit.png)
