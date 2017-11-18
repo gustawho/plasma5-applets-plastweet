@@ -94,7 +94,7 @@ Item {
 					inputQuery.placeholderText = i18n("What's happening?");
 					dragIcon.visible = false;
 					imgPreview.source = drag.source; // FIXME
-					filepath = drag.source;
+					// filepath = dropArea.source;
 					changeSizeAnimation.running = true;
 					previewFadeIn.running = true;
 				}

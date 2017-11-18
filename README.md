@@ -39,6 +39,8 @@ Keep in mind that in order to use the media upload feature, you need to use the 
 * Dialog to search and add GIFs
 * Automatic threads
 * Drafts
+* Username auto-completion
+* Highlight hashtags
 
 ### TODO:
 * Handle errors
@@ -49,4 +51,7 @@ Keep in mind that in order to use the media upload feature, you need to use the 
 * Safely store login details
 * Spell checking support
 
-![Made with KDevelop](screenshots/made-with-kdevelop.png)
+
+<p align="center">
+<img src="screenshots/made-with-kdevelop.png" width="50%">
+</p>
