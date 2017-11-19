@@ -51,7 +51,6 @@ Keep in mind that in order to use the media upload feature, you need to use the 
 * Safely store login details
 * Spell checking support
 
-
 <p align="center">
 <img src="screenshots/made-with-kdevelop.png" width="50%">
 </p>
