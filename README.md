@@ -16,6 +16,7 @@ The primary goal of this project is to bring the ability to quickly send tweets 
 * liboauth
 * libcurl
 * Extra CMake Modules
+* Qt5 GraphicalEffects
 * KF5 & Plasma, obviously
 
 ### Test
