@@ -29,7 +29,7 @@ import QtQuick.Dialogs 1.0
 import QtGraphicalEffects 1.0
 
 import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0
+import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import com.gustawho.plastweet 1.0
@@ -37,6 +37,38 @@ import com.gustawho.plastweet 1.0
 Item {
 	id: main
 
+	Plasmoid.compactRepresentation: MouseArea {
+		id: trayView
+		
+		Layout.minimumWidth: isVertical ? 0 : compactRow.implicitWidth
+		Layout.maximumWidth: isVertical ? Infinity : Layout.minimumWidth
+		Layout.preferredWidth: isVertical ? undefined : Layout.minimumWidth
+		
+		onClicked: plasmoid.expanded = !plasmoid.expanded
+		
+		Row {
+			id: compactRow
+			
+			anchors.centerIn: parent
+			spacing: units.smallSpacing
+			
+			PlasmaCore.IconItem {
+				id: icon
+				width: height
+				height: compactRoot.height
+				Layout.preferredWidth: height
+				source: "im-twitter"
+				
+				DropArea {
+					anchors.fill: parent;
+					onEntered: {
+						plasmoid.expanded = !plasmoid.expanded;
+					}
+				}
+			}
+		}
+	}
+	
 	Plasmoid.fullRepresentation: Item {
 		id: fullRepresentation
 		anchors.fill: parent
@@ -51,7 +83,22 @@ Item {
 		BackEnd {
 			id: backend
 		}
+		
+		PlasmaComponents.Highlight {
+			id: delegateHighlight
+			visible: false
+			z: -1
+		}
 
+		Connections {
+			target: plasmoid
+			onExpandedChanged: {
+				if (plasmoid.expanded) {
+					sessionsModel.reload()
+				}
+			}
+		}
+		
 		RowLayout {
 			id: topRowLayout
 			anchors.horizontalCenter: parent.horizontalCenter
