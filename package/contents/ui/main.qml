@@ -199,7 +199,7 @@ Item {
 			FileDialog {
 				id: fileDialog
 				title: "Select an image to upload"
-				folder: shortcuts.pictures
+				folder: shortcuts.home
 				nameFilters: [ "Image files (*.jpg *.png *.gif *.bmp)", "All files (*)" ]
 				onAccepted: {
 					changeSizeAnimation.running = true;
