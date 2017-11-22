@@ -19,6 +19,9 @@
 
 ***************************************************************************/
 
+// TODO:
+// * Get rid of all the Q_INVOKABLE macros and instead use Q_PROPERTY
+
 #ifndef BACKEND_H
 #define BACKEND_H
 
@@ -57,7 +60,6 @@ private:
 	string strAccessTokenKey;
 	string strAccessTokenSecret;
 	string strReplyMsg;
-	
 // 	string myConsumerKey;
 // 	string myConsumerSecret;
 // 	string myTokenKeyFile;

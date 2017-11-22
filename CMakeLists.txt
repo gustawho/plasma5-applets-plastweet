@@ -19,6 +19,7 @@ feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Quick)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma I18n)
+find_package(KF5Emoticons)
 
 add_subdirectory(plugin)
 add_subdirectory(translations)

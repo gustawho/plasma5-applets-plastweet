@@ -1,6 +1,6 @@
 /***************************************************************************
  * 
- *	Copyright 2017 Gustavo Castro <gustawho@gmail.com>                         *
+ *	Copyright 2017 Gustavo Castro <gustawho@gmail.com>
  * 
  *	This file is part of Plastweet.
  * 
@@ -20,8 +20,9 @@
  ***************************************************************************/
 
 // TODO:
-// * Implement file upload (pictures and video) and OAuth login
+// * Implement multi-upload (pictures and video) and OAuth login
 // * Use KNotifications on events (unable to login, media upload, tweet update status)
+// * A background service
 
 #include <iostream>
 #include <string>
