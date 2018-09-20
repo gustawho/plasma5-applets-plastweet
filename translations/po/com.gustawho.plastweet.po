@@ -1,7 +1,7 @@
 # Plastweet translation template
 # Copyright (C) 2017 This file is part of Plastweet
 # This file is distributed under the same license as the Plastweet package.
-# Gustavo Castro <gustawho@gmail.com>, 2017.
+# Gustavo Castro <gustawho@gmail.com>, 2018.
 #
 #, fuzzy
 msgid ""

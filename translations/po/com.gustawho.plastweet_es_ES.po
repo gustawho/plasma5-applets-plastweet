@@ -1,20 +1,20 @@
 # Plastweet: Traducción al español (es_ES)
 # Copyright (C) 2017 Este archivo es parte de Plastweet
 # Este archivo se distribuye con la misma licencia que Plastweet.
-# Gustavo Castro <gustawho@gmail.com>, 2017.
+# Gustavo Castro <gustawho@gmail.com>, 2018.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/gustawho/plastweet/issues\n"
-"POT-Creation-Date: 2017-11-13 02:12+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2017-11-13 02:12+0500\n"
+"PO-Revision-Date: 2018-09-20 06:28:36+0500\n"
 "Last-Translator: Gustavo Castro <gustawho@gmail.com>\n"
 "Language-Team: ES <gustawho@gmail.com>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "General"
