@@ -20,9 +20,6 @@ feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Quick)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma I18n)
 
-add_subdirectory(plugin)
 add_subdirectory(translations)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ltwitcurl -lcurl -ljson -std=c++11 -s")
 
 plasma_install_package(package org.kde.plastweet)

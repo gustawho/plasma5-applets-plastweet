@@ -5,3 +5,4 @@ BUILD
 *.pro
 *.pro.user
 *~
+*.backup

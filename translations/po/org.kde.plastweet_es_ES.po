@@ -1,20 +1,20 @@
-# Plastweet: Traducción al español (es_ES)
-# Copyright (C) 2017 Este archivo es parte de Plastweet
-# Este archivo se distribuye con la misma licencia que Plastweet.
-# Gustavo Castro <gustawho@gmail.com>, 2018.
+# Plastweet translation template
+# Copyright (C) 2020 This file is part of Plastweet
+# This file is distributed under the same license as the Plastweet package.
+# Gustavo Castro <gustawho@gmail.com>, 2020.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/gustawho/plastweet/issues\n"
-"POT-Creation-Date: 2017-11-13 02:12+0500\n"
-"PO-Revision-Date: 2018-09-20 06:28:36+0500\n"
-"Last-Translator: Gustavo Castro <gustawho@gmail.com>\n"
-"Language-Team: ES <gustawho@gmail.com>\n"
-"Language: es_ES\n"
+"POT-Creation-Date: 2020-07-27 00:35+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: es_MX\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "General"
@@ -27,10 +27,10 @@ msgid "Mentions and replies"
 msgstr "Menciones y respuestas"
 
 msgid "Retweets"
-msgstr "Re-tweets"
+msgstr "Retweets"
 
-msgid "Likes"
-msgstr "Favoritos"
+msgid "Repĺies"
+msgstr "Respuestas"
 
 msgid "Sync interval:"
 msgstr "Intervalo de sincronización"
@@ -38,29 +38,44 @@ msgstr "Intervalo de sincronización"
 msgid "What's happening?"
 msgstr "¿Qué está pasando?"
 
-msgid "Add a picture"
-msgstr "Añadir una imagen"
+msgid "Add an image or video"
+msgstr "Añadir una imagen o vídeo"
+
+msgid "Remove media"
+msgstr "Quitar media"
+
+msgid "Drop an image or video"
+msgstr "Suelta una imagen o vídeo"
 
 msgid "Tweet"
 msgstr "Twittear"
 
+msgid "Send Tweet"
+msgstr "Enviar tweet"
+
 msgid "API Settings"
-msgstr "Ajustes de la API"
+msgstr "Ajustes de API"
 
-msgid "Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
-msgstr "Los clientes de terceros tienen acceso limitado a Twitter con límites más estrictos, menos funciones y límites de tokens. Se recomienda usar tu propia llave. Primero debes registrar una nueva aplicación (si aún no tienes una) <a href='https://apps.twitter.com'>aquí</a>."
+msgid "Third-party clients have very limited access to Twitter with stricter rate limit and fewer features. It's recommended to use your own key. To do so, you first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
+msgstr "Los clientes de terceros tienen acceso restringido a Twitter con un límite de velocidad más estricto y menos funciones. Se recomienda usar su propia clave. Para hacerlo, primero debe registrar una nueva aplicación (si aún no cuenta con una) <a href='https://apps.twitter.com'> aquí </a>."
 
-msgid "Consumer Key (API Key):"
-msgstr "Consumer Key (API Key):"
+msgid "Consumer API keys:"
+msgstr ""
 
-msgid "Consumer Secret (API Secret):"
-msgstr "Consumer Secret (API Secret):"
+msgid "Access token & access token secret:"
+msgstr ""
 
-msgid "Access Token:"
-msgstr "Access Token:"
+msgid "Consumer Key"
+msgstr ""
 
-msgid "Access Token Secret:"
-msgstr "Access Token Secret:"
+msgid "Consumer Secret"
+msgstr ""
+
+msgid "Access Token"
+msgstr ""
+
+msgid "Access Token Secret"
+msgstr ""
 
 msgid "Login"
 msgstr "Iniciar sesión"

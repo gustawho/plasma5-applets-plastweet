@@ -21,7 +21,7 @@
 
 // TODO: Add the Notifications GUI
 
-import QtQuick 2.5
+import QtQuick 2.11
 
 import org.kde.plasma.configuration 2.0
 

@@ -30,8 +30,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-// C++ Backend
-import org.kde.plastweet 1.0
+import "../code/twitter.js" as Twitter;
 
 Item {
 	id: main
@@ -39,8 +38,6 @@ Item {
 	readonly property string consumerSecret: plasmoid.configuration.consSec
 	readonly property string accessToken: plasmoid.configuration.accToken
 	readonly property string accessTokenSec: plasmoid.configuration.accTokenSec
-	
-	// Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
 	
 	Plasmoid.compactRepresentation: PlasmaCore.IconItem {
 		source: "im-twitter"
@@ -70,10 +67,6 @@ Item {
 		
 		property string filepath: ""
 		property string tweetMsg: ""
-		
-		BackEnd {
-			id: backend
-		}
 		
 		PlasmaComponents.Highlight {
 			id: delegateHighlight
@@ -117,7 +110,7 @@ Item {
 						anchors.verticalCenter: parent.verticalCenter
 						anchors.horizontalCenter: parent.horizontalCenter
 						color: theme.viewTextColor
-						text: i18n("Drop your image or video")
+						text: i18n("Drop an image or video")
 					}
 				}
 				DropArea {
@@ -201,18 +194,18 @@ Item {
 			}
 			
 			PlasmaComponents.Button {
-					id: removeImg
-					iconSource: "edit-delete-remove"
-					tooltip: i18n("Remove media")
-					anchors.horizontalCenter: parent.horizontalCenter
-					anchors.verticalCenter: parent.verticalCenter
-					onClicked: {
-						fileDialog.close();
-						filepath = "";
-						previewFadeIn.running = false;
-						previewFadeOut.running = true;
-					}
+				id: removeImg
+				iconSource: "edit-delete-remove"
+				tooltip: i18n("Remove media")
+				anchors.horizontalCenter: parent.horizontalCenter
+				anchors.verticalCenter: parent.verticalCenter
+				onClicked: {
+					fileDialog.close();
+					filepath = "";
+					previewFadeIn.running = false;
+					previewFadeOut.running = true;
 				}
+			}
 		}
 		
 		RowLayout {
@@ -222,10 +215,10 @@ Item {
 			
 			// TODO: Implement GIF browse/upload
 			/*PlasmaComponents.Button {
-				id: browseGifs
-				iconSource: "image-gif"
-				tooltip: i18n("Add a GIF")
-			}*/
+			 *				id: browseGifs
+			 *				iconSource: "image-gif"
+			 *				tooltip: i18n("Add a GIF")
+		}*/
 			
 			FileDialog {
 				id: fileDialog
@@ -243,10 +236,11 @@ Item {
 			}
 			
 			// FIXME: Allow to upload multiple files or video
+			// FIXME: Adjust to new backend
 			PlasmaComponents.Button {
 				id: selectImageButton
 				iconSource: "viewimage"
-				tooltip: i18n("Add a picture or video")
+				tooltip: i18n("Add an image or video")
 				onClicked: fileDialog.open()
 			}
 			
@@ -270,18 +264,23 @@ Item {
 				}
 				enabled: validateContent()
 				
+				function sendTweet(t) {
+					const client = new Twitter.Twitter({
+						subdomain: "api",
+						version: "1.1",
+						consumer_key: consumerKey,
+						consumer_secret: consumerSecret,
+						access_token_key: accessToken,
+						access_token_secret: accessTokenSec
+					});
+					
+					const tweet = client.post("statuses/update", {
+						status: t
+					});
+				}
+				
 				onClicked: {
-					function checkText() {
-						var tweetMsg = ""
-						if(inputQuery.text == "") {
-							tweetMsg = " "
-							backend.sendTweet(tweetMsg, filepath.toString(), consumerKey, consumerSecret, accessToken, accessTokenSec);
-						} else {
-							backend.sendTweet(inputQuery.text, filepath.toString(), consumerKey, consumerSecret, accessToken, accessTokenSec);
-						}
-					}
-					checkText();
-					filepath = "";
+					sendTweet(inputQuery.text);
 					inputQuery.text = "";
 					inputQuery.focus = false;
 					previewFadeOut.running = true;

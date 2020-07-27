@@ -1,57 +1,42 @@
 # Plastweet
-## A small plasmoid to post tweets directly from your Plasma desktop (WiP)
-The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
+_A small plasmoid to tweet directly from your Plasma desktop (WiP)_
 
-### Tentative Design
+The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It aims to be as simple and lightweight as possible.
+
 <p align="center">
-<img src="screenshots/preview.gif">
-<img src="screenshots/plasmoid.png">
-<img src="screenshots/text.png">
-<img src="screenshots/charlimit.png">
-<img src="screenshots/oauth-gui.png">
+<img src="screenshots/plastweet.png">
 </p>
 
-### Requirements
-* [Twitcurl](https://github.com/gustawho/twitcurl)
-* liboauth
-* libcurl
-* Extra CMake Modules
-* Qt5 GraphicalEffects
-* KF5 & Plasma, obviously
+## Features
+Currently, posting tweet updates is the only available function. Although UI for adding images and videos is already there, it doesn't actually work with the JavaScript implementation (I'm working on it!).
+However, you still can get this feature if you clone and compile the previous version (check the `cxx-backend` branch), but keep in mind that it requires additional dependencies and to be compiled.
 
-### Test
-Currently, tweeting is the only available feature. Keep in mind that you need to register an application at [apps.twitter.com](https://apps.twitter.com) and set the appropriate values in plugin/backend.cpp.
-```Bash
-git clone https://github.com/gustawho/plastweet.git
-cd plastweet && mkdir build && cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
-make
-sudo make install
-cd ..
-kpackagetool5 -t Plasma/Applet --upgrade package && plasmoidviewer --applet package
-```
-Keep in mind that in order to use the media upload feature, you need to use the Twitcurl version linked in the previous section.
+## Planned Features
+- [ ] Attach images or video
+- [ ] OAuth authentication
+- [ ] Receive notifications on account interactions
+- [ ] Integration with "Online Accounts"
+- [ ] Dialog to search and add GIF images
+- [ ] Automatic threads
+- [ ] Drafts
+- [ ] Username auto-completion
+- [ ] Hashtag highlighting
 
-### Planned Features
-* Add multiple pictures or video
-* Change the API settings if needed
-* Receive notifications on account interactions (mentions, for instance... Optional and still in discussion)
-* Integration with "Online Accounts"
-* Dialog to search and add GIFs
-* Automatic threads
-* Drafts
-* Username auto-completion
-* Highlight hashtags
+## TODO
+- [ ] Handle errors
+- [ ] Add a progress bar
+- [ ] Native notifications support
+- [ ] Re-implement media upload
+- [ ] Safely store login details
+- [ ] Spell checking support
 
-### TODO:
-* Handle errors
-* Add a progress bar
-* Tray indicator support
-* Native notifications support
-* Implement multiple media upload
-* Safely store login details
-* Spell checking support
+## Credits
+* [twitter-lite](https://github.com/draftbit/twitter-lite) (MIT)
+* [cross-fetch](https://github.com/lquixada/cross-fetch) (MIT, _twitter-lite dependency_)
+* [crypto-js](https://github.com/brix/crypto-js) (MIT, _twitter-lite dependency_)
+* [oauth-1.0a](https://github.com/ddo/oauth-1.0a) (MIT, _twitter-lite dependency_)
+* [querystring](https://github.com/Gozala/querystring) (MIT, _twitter-lite dependency_)
 
 <p align="center">
-<img src="screenshots/made-with-kdevelop.png" width="50%">
+<img src="screenshots/made-with-kdevelop.png" width="70%">
 </p>

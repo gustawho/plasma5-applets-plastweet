@@ -17,8 +17,8 @@
  * along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.5
-import QtQuick.Controls 2.5 as Controls
+import QtQuick 2.11
+import QtQuick.Controls 2.11 as Controls
 import QtQuick.Layouts 1.1
 
 import org.kde.plasma.core 2.0 as PlasmaCore
