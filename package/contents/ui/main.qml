@@ -1,85 +1,76 @@
-/***************************************************************************
-
-	Copyright 2017 Gustavo Castro <gustawho@gmail.com>
-	
-	This file is part of Plastweet.
-
-	Plastweet is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	Plastweet is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
-
-***************************************************************************/
+/*
+ * 
+ *	Copyright 2020 Gustavo Castro <gustawho@gmail.com>
+ *	
+ *	This file is part of Plastweet.
+ * 
+ *	Plastweet is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ * 
+ *	Plastweet is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ * 
+ *	You should have received a copy of the GNU General Public License
+ *	along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ */
 
 // TODO:
-// * Add a progressbar that informs about media upload
-
-import QtQuick 2.3
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.0
-import QtQuick.Dialogs 1.0
-import QtGraphicalEffects 1.0
+// * Add a progress bar for media upload
+import QtQuick 2.11
+import QtQuick.Layouts 1.1
+import QtQuick.Dialogs 1.3
+import QtGraphicalEffects 1.12
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-import com.gustawho.plastweet 1.0
+// C++ Backend
+import org.kde.plastweet 1.0
 
 Item {
 	id: main
-
-	Plasmoid.compactRepresentation: MouseArea {
-		id: trayView
+	readonly property string consumerKey: plasmoid.configuration.consKey
+	readonly property string consumerSecret: plasmoid.configuration.consSec
+	readonly property string accessToken: plasmoid.configuration.accToken
+	readonly property string accessTokenSec: plasmoid.configuration.accTokenSec
+	
+	// Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+	
+	Plasmoid.compactRepresentation: PlasmaCore.IconItem {
+		source: "im-twitter"
+		active: compactMouse.containsMouse
 		
-		Layout.minimumWidth: isVertical ? 0 : compactRow.implicitWidth
-		Layout.maximumWidth: isVertical ? Infinity : Layout.minimumWidth
-		Layout.preferredWidth: isVertical ? undefined : Layout.minimumWidth
-		
-		onClicked: plasmoid.expanded = !plasmoid.expanded
-		
-		Row {
-			id: compactRow
+		MouseArea {
+			id: compactMouse
+			anchors.fill: parent
+			hoverEnabled:true
+			onClicked: plasmoid.expanded = !plasmoid.expanded
 			
-			anchors.centerIn: parent
-			spacing: units.smallSpacing
-			
-			PlasmaCore.IconItem {
-				id: icon
-				width: height
-				height: compactRoot.height
-				Layout.preferredWidth: height
-				source: "im-twitter"
-				
-				DropArea {
-					anchors.fill: parent;
-					onEntered: {
-						plasmoid.expanded = !plasmoid.expanded;
-					}
+			DropArea {
+				anchors.fill: parent;
+				onEntered: {
+					plasmoid.expanded = !plasmoid.expanded;
 				}
 			}
 		}
 	}
 	
-	Plasmoid.fullRepresentation: Item {
+	Plasmoid.fullRepresentation: ColumnLayout {
 		id: fullRepresentation
 		anchors.fill: parent
+		
 		Layout.minimumHeight: units.gridUnit * 10
 		Layout.minimumWidth: units.gridUnit * 15
-		Layout.maximumHeight: units.gridUnit * 10
-		Layout.preferredWidth: units.gridUnit * 15
 		
 		property string filepath: ""
 		property string tweetMsg: ""
-
+		
 		BackEnd {
 			id: backend
 		}
@@ -89,7 +80,7 @@ Item {
 			visible: false
 			z: -1
 		}
-
+		
 		Connections {
 			target: plasmoid
 			onExpandedChanged: {
@@ -101,36 +92,32 @@ Item {
 		
 		RowLayout {
 			id: topRowLayout
-			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.left: parent.left
+			Layout.alignment: Qt.AlignHCenter
 			Layout.fillWidth: true
-
+			
 			PlasmaComponents.TextArea {
 				id: inputQuery
 				implicitHeight: parent.minimumHeight
-				implicitWidth: parent.minimumWidth
+				implicitWidth: parent.width
 				wrapMode: TextEdit.Wrap
-				anchors.top: parent.top
-				anchors.left: parent.left
 				Layout.fillWidth: true
+				Layout.fillHeight: true
 				placeholderText: i18n("What's happening?")
 				textColor: text.length >= 280 ? "red" : theme.viewTextColor
 				Rectangle {
 					id: dragIcon
-					width: 110
-					height: 100
+					Layout.fillWidth: true
+					Layout.fillHeight: true
 					color: "transparent"
-					border.color: theme.viewTextColor
 					anchors.verticalCenter: parent.verticalCenter
 					anchors.horizontalCenter: parent.horizontalCenter
-					border.width: 1
 					radius: 2
 					visible: false
 					PlasmaComponents.Label {
 						anchors.verticalCenter: parent.verticalCenter
 						anchors.horizontalCenter: parent.horizontalCenter
 						color: theme.viewTextColor
-						text: i18n("Drop your image")
+						text: i18n("Drop your image or video")
 					}
 				}
 				DropArea {
@@ -147,7 +134,7 @@ Item {
 						inputQuery.placeholderText = "";
 						dragIcon.visible = true;
 					}
-
+					
 					onDropped: {
 						inputQuery.placeholderText = i18n("What's happening?");
 						dragIcon.visible = false;
@@ -161,13 +148,13 @@ Item {
 						}
 						drop.accepted = true;
 					}
-
+					
 					onExited: {
 						dragIcon.visible = false;
 						inputQuery.placeholderText = i18n("What's happening?");
 					}
 				}
-
+				
 				PlasmaComponents.Label {
 					id: charCounter
 					anchors.bottom: parent.bottom
@@ -181,28 +168,71 @@ Item {
 				}
 			}
 		}
-
+		
+		Rectangle {
+			Layout.fillWidth: true
+			height: (parent.height)/2
+			id: imgCanvas
+			visible: false
+			color: theme.backgroundColor
+			border.color: theme.viewBackgroundColor
+			radius: 2
+			
+			Rectangle {
+				id: mask
+				width: parent.width
+				height: width
+				radius: 2
+				visible: false
+			}
+			
+			AnimatedImage {
+				id: imgPreview
+				anchors.fill: parent
+				fillMode: Image.PreserveAspectCrop
+				smooth: true
+				layer.enabled: true
+				asynchronous: true
+				playing: true
+				layer.effect: OpacityMask {
+					maskSource: mask
+				}
+				opacity: 0.75
+			}
+			
+			PlasmaComponents.Button {
+					id: removeImg
+					iconSource: "edit-delete-remove"
+					tooltip: i18n("Remove media")
+					anchors.horizontalCenter: parent.horizontalCenter
+					anchors.verticalCenter: parent.verticalCenter
+					onClicked: {
+						fileDialog.close();
+						filepath = "";
+						previewFadeIn.running = false;
+						previewFadeOut.running = true;
+					}
+				}
+		}
+		
 		RowLayout {
 			id: bottomRowLayout
-			anchors.bottom: parent.bottom
-			anchors.right: parent.right
+			Layout.alignment: Qt.AlignRight
 			Layout.fillWidth: true
-			Layout.fillHeight: true
 			
 			// TODO: Implement GIF browse/upload
-			PlasmaComponents.Button {
+			/*PlasmaComponents.Button {
 				id: browseGifs
 				iconSource: "image-gif"
 				tooltip: i18n("Add a GIF")
-			}
+			}*/
 			
 			FileDialog {
 				id: fileDialog
-				title: "Select an image to upload"
+				title: "Select an image or video to upload"
 				folder: shortcuts.home
-				nameFilters: [ "Image files (*.jpg *.png *.gif *.bmp)", "All files (*)" ]
+				nameFilters: [ "Media files (*.jpg *.png *.gif *.bmp *.mp4)", "All files (*)" ]
 				onAccepted: {
-					changeSizeAnimation.running = true;
 					previewFadeIn.running = true;
 					imgPreview.source = fileDialog.fileUrl;
 					filepath = fileDialog.fileUrl;
@@ -216,16 +246,15 @@ Item {
 			PlasmaComponents.Button {
 				id: selectImageButton
 				iconSource: "viewimage"
-				tooltip: i18n("Add a picture")
+				tooltip: i18n("Add a picture or video")
 				onClicked: fileDialog.open()
 			}
-
+			
 			PlasmaComponents.Button {
 				id: sendTweetButton
-				iconSource: "im-twitter"
-				tooltip: i18n("Tweet")
+				text: i18n("Tweet")
+				tooltip: i18n("Send Tweet")
 				
-				// enabled: (inputQuery.text.length <= 0 || inputQuery.text.length >= 280) ? false : true
 				function validateContent() {
 					var enableButton = false
 					if(inputQuery.text.length <= 0 || inputQuery.text.length >= 280) {
@@ -246,9 +275,9 @@ Item {
 						var tweetMsg = ""
 						if(inputQuery.text == "") {
 							tweetMsg = " "
-							backend.sendTweet(tweetMsg, filepath.toString());
+							backend.sendTweet(tweetMsg, filepath.toString(), consumerKey, consumerSecret, accessToken, accessTokenSec);
 						} else {
-							backend.sendTweet(inputQuery.text, filepath.toString());
+							backend.sendTweet(inputQuery.text, filepath.toString(), consumerKey, consumerSecret, accessToken, accessTokenSec);
 						}
 					}
 					checkText();
@@ -256,98 +285,30 @@ Item {
 					inputQuery.text = "";
 					inputQuery.focus = false;
 					previewFadeOut.running = true;
-					restoreSize.running = true;
 					imgPreview.source = "";
 				}
 			}
 		}
 		
-		PlasmaComponents.ToolButton {
-			id: keepOpen
-			anchors.right: parent.right
-			anchors.top: parent.top
-			width: Math.round(units.gridUnit * 1.25)
-			height: width
-			checkable: true
-			iconSource: "window-pin"
-			visible: main.fromCompact
-			onCheckedChanged: plasmoid.hideOnWindowDeactivate = !checked
-		}
-		
-		PropertyAnimation {
-			id: changeSizeAnimation;
-			target: parent;
-			properties: "Layout.minimumHeight,Layout.maximumHeight";
-			to: (units.gridUnit * 10) + 36;
-			duration: 50;
-		}
-		
-		PropertyAnimation {
-			id: restoreSize;
-			target: parent;
-			properties: "Layout.minimumHeight,Layout.maximumHeight";
-			to: units.gridUnit * 10;
-			duration: 150;
-		}
-		
 		PropertyAnimation {
 			id: previewFadeIn;
-			target: imgPreview;
+			target: imgCanvas;
 			property: "visible";
 			to: true;
+			easing.type: Easing.InOutQuad
 			duration: 150;
 			running: false;
 		}
 		
 		PropertyAnimation {
 			id: previewFadeOut;
-			target: imgPreview;
+			target: imgCanvas;
 			property: "visible";
 			to: false;
-			duration: 50;
+			easing.type: Easing.InOutQuad
+			duration: 150;
 			running: false;
 		}
 		
-		Item {
-			anchors.bottom: parent.bottom
-			anchors.left: parent.left
-			anchors.leftMargin: 2
-			width: 64
-			height: width
-			
-			Rectangle {
-				id: mask
-				width: parent.width
-				height: width
-				radius: 2
-				visible: false
-			}
-			
-			Image {
-				id: imgPreview
-				Layout.fillWidth: true
-				anchors.fill: parent
-				fillMode: Image.PreserveAspectCrop
-				smooth: true
-				visible: false
-				layer.enabled: true
-				asynchronous: true
-				layer.effect: OpacityMask {
-					maskSource: mask
-				}
-				PlasmaComponents.ToolButton {
-					id: removeImg
-					iconSource: "remove"
-					anchors.horizontalCenter: parent.horizontalCenter
-					anchors.verticalCenter: parent.verticalCenter
-					onClicked: {
-						fileDialog.close();
-						filepath = "";
-						previewFadeOut.running = true;
-						restoreSize.running = true;
-					}
-				}
-			}
-		}
 	}
 }

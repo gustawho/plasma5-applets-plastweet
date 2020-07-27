@@ -30,29 +30,23 @@
 using namespace std;
 
 #include <QObject>
-#include <QDebug>
 
 #include "twitcurl.h"
 
 class BackEnd : public QObject {
-	// Q_PROPERTY(QString AuthLink READ getAuthLink NOTIFY authLinkChanged)
 	Q_OBJECT
 public:
 	explicit BackEnd(QObject *parent = 0);
 	~BackEnd();
-	// string getWebAuthorizeLink();
-	// Q_INVOKABLE QString userQ;
-	// Q_INVOKABLE QString passQ;
-	// Q_INVOKABLE int getAuthLink(const QString &username, const QString &password);
+	
 	Q_INVOKABLE QString originalStr;
 	Q_INVOKABLE QString mediaPath;
 	Q_INVOKABLE int mediaCheck;
 	Q_INVOKABLE string strString;
-	bool execMain(string strString, string strFilePath);
-	Q_INVOKABLE int sendTweet(const QString &tweetTxt, const QString &tweetImg);
+	bool execMain(string strString, string strFilePath, string ck, string cs, string ak, string tk);
+	Q_INVOKABLE int sendTweet(const QString &tweetTxt, const QString &tweetImg, const QString &consKey, const QString &consSec, const QString &accToken, const QString &accTokenKey);
 signals:
-	Q_INVOKABLE void tweetSent();
-	// void authLinkChanged();
+	// Q_INVOKABLE void tweetSent();
 private:
 	twitCurl twitterObj;
 	string strConsumerKey;
@@ -60,10 +54,6 @@ private:
 	string strAccessTokenKey;
 	string strAccessTokenSecret;
 	string strReplyMsg;
-// 	string myConsumerKey;
-// 	string myConsumerSecret;
-// 	string myTokenKeyFile;
-// 	string myTokenSecretFile;
 };
 
 #endif

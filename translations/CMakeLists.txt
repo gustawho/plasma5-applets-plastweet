@@ -6,7 +6,7 @@ IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
 NOTE: msgfmt not found. Translations will *not* be installed
 ------")
 ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
-	SET(catalogname plasma_applet_com.gustawho.plastweet)
+	SET(catalogname plasma_applet_org.kde.plastweet)
 
 	FILE(GLOB PO_FILES po/*.po)
 	SET(GMO_FILES)

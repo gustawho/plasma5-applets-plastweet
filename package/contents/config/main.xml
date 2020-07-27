@@ -6,33 +6,26 @@
 	<kcfgfile name=""/>
 
 	<group name="General">
-		<entry name="txtConsKey" type="String">
-			<label>Consumer Key (API Key)</label>
+		<entry name="defaultCred" type="bool">
+			<label>Consumer Key</label>
+			<default>true</default>
+		</entry>
+		<entry name="consKey" type="String">
+			<label>Consumer Key</label>
 			<default></default>
 		</entry>
-		<entry name="txtConsSecret" type="String">
-			<label>Consumer Secret (API Secret)</label>
+		<entry name="consSec" type="String">
+			<label>Consumer Secret</label>
+			<default></default>
+		</entry>
+		<entry name="accToken" type="String">
+			<label>Access Token</label>
+			<default></default>
+		</entry>
+		<entry name="accTokenSec" type="String">
+			<label>Access Token Secret</label>
 			<default></default>
 		</entry>
 	</group>
-
-	<group name="Notifications">
-		<entry name="mentionsBox" type="bool">
-			<label>Mentions and replies</label>
-			<default>false</default>
-		</entry>
-		<entry name="rtBox" type="bool">
-			<label>Retweets</label>
-			<default>false</default>
-		</entry>
-		<entry name="likesBox" type="bool">
-			<label>Likes</label>
-			<default>false</default>
-		</entry>
-		<entry name="syncTimeSpinBox" type="Int">
-			<default>5</default>
-		</entry>
-	</group>
-	
 
 </kcfg> 

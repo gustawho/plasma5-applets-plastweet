@@ -21,7 +21,8 @@
 
 // TODO: Add the Notifications GUI
 
-import QtQuick 2.3
+import QtQuick 2.5
+
 import org.kde.plasma.configuration 2.0
 
 import "../ui" as UI
@@ -31,11 +32,5 @@ ConfigModel {
 		name: i18n('General')
 		icon: 'preferences-other'
 		source: 'config/ConfigGeneral.qml'
-	}
-	
-	ConfigCategory {
-		name: i18n('Notifications')
-		icon: 'preferences-desktop-notification'
-		source: 'config/ConfigNotifications.qml'
 	}
 }
