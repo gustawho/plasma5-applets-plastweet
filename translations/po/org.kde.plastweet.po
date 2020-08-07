@@ -85,3 +85,6 @@ msgstr ""
 
 msgid "Account"
 msgstr ""
+
+msgid "Media files"
+msgstr ""

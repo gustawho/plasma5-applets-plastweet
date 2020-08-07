@@ -85,3 +85,6 @@ msgstr "Generar token"
 
 msgid "Account"
 msgstr "Cuenta"
+
+msgid "Media files"
+msgstr "Archivos multimedia"

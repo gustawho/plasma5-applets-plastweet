@@ -86,3 +86,6 @@ msgstr "Toegangssleutel genereren"
 
 msgid "Account"
 msgstr "Account"
+
+msgid "Media files"
+msgstr "Mediabestanden"
