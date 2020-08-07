@@ -3,6 +3,6 @@
 build
 BUILD
 *.pro
-*.pro.user
+*.user
 *~
 *.backup
