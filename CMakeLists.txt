@@ -22,4 +22,4 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma I18n)
 
 add_subdirectory(translations)
 
-plasma_install_package(package org.kde.plastweet)
+plasma_install_package(org.kde.plastweet org.kde.plastweet)
