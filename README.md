@@ -13,7 +13,7 @@ However, you still can get this feature if you clone and compile the previous ve
 
 ## Installation
 ### User
-Copy or move the `org.kde.plastweet` directory to `~/.local/share/plasma/plasmoids` (create the appropriate directories as needed).
+Copy or move the `package` directory inside `src` to `~/.local/share/plasma/plasmoids` (create the appropriate directories as needed).
 
 ### System-wide
 Open a terminal in the cloned directory and run:
