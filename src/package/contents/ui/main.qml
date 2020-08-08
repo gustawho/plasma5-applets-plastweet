@@ -26,6 +26,8 @@ import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.3
 import QtGraphicalEffects 1.12
 
+import org.kde.draganddrop 2.0 as DragDrop
+
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -40,23 +42,27 @@ Item {
 	readonly property string accessToken: plasmoid.configuration.accToken
 	readonly property string accessTokenSec: plasmoid.configuration.accTokenSec
 	
-	// Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-	
-	Plasmoid.compactRepresentation: PlasmaCore.IconItem {
-		source: "im-twitter"
-		active: compactMouse.containsMouse
-		
+	Plasmoid.compactRepresentation: DragDrop.DropArea {
+		id: compactDropArea
+		onDragEnter: activationTimer.restart()
+		onDragLeave: activationTimer.stop()
+
+		Timer {
+			id: activationTimer
+			interval: 250 // matches taskmanager delay
+			onTriggered: plasmoid.expanded = true
+		}
+
 		MouseArea {
-			id: compactMouse
 			anchors.fill: parent
-			hoverEnabled:true
+			hoverEnabled: true
 			onClicked: plasmoid.expanded = !plasmoid.expanded
-			
-			DropArea {
-				anchors.fill: parent;
-				onEntered: {
-					plasmoid.expanded = !plasmoid.expanded;
-				}
+
+			PlasmaCore.IconItem {
+				anchors.fill: parent
+				source: "im-twitter"
+				colorGroup: PlasmaCore.ColorScope.colorGroup
+				active: parent.containsMouse
 			}
 		}
 	}
@@ -122,7 +128,7 @@ Item {
 				}
 				DropArea {
 					id: dropArea;
-					anchors.fill: parent;
+					anchors.fill: topRowLayout;
 					
 					function inputToString(object) {
 						var string = "";
@@ -141,10 +147,9 @@ Item {
 						
 						if (drop.hasUrls) {
 							var urls = inputToString(drop.urls);
+							previewFadeIn.running = true;
 							imgPreview.source = urls;
 							filepath = urls;
-							changeSizeAnimation.running = true;
-							previewFadeIn.running = true;
 						}
 						drop.accepted = true;
 					}
@@ -231,7 +236,7 @@ Item {
 				id: fileDialog
 				title: "Select an image or video to upload"
 				folder: shortcuts.home
-				nameFilters: [ "Media files (*.jpg *.png *.gif *.bmp *.mp4)", "All files (*)" ]
+				nameFilters: [ i18n("Media files(*.jpg *.png *.gif *.bmp *.mp4)"), "All files(*)" ]
 				onAccepted: {
 					previewFadeIn.running = true;
 					imgPreview.source = fileDialog.fileUrl;

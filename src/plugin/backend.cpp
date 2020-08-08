@@ -1,7 +1,7 @@
 /*
  * 
  *	Copyright 2020 Gustavo Castro <gustawho@gmail.com>
- * 
+ *	
  *	This file is part of Plastweet.
  * 
  *	Plastweet is free software: you can redistribute it and/or modify
