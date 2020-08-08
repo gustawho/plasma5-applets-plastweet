@@ -11,6 +11,20 @@ The primary goal of this project is to bring the ability to quickly send tweets 
 Currently, posting tweet updates is the only available function. Although UI for adding images and videos is already there, it doesn't actually work with the JavaScript implementation (I'm working on it!).
 However, you still can get this feature if you clone and compile the previous version (check the `cxx-backend` branch), but keep in mind that it requires additional dependencies and to be compiled.
 
+## Installation
+### User
+Copy or move the `org.kde.plastweet` directory to `~/.local/share/plasma/plasmoids` (create the appropriate directories as needed).
+
+### System-wide
+Open a terminal in the cloned directory and run:
+```bash
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+make
+sudo make install
+```
+
 ## Planned Features
 - [ ] Attach images or video
 - [ ] OAuth authentication
