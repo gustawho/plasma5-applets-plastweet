@@ -37,10 +37,10 @@ import org.kde.plastweet 1.0
 
 Item {
 	id: main
-	readonly property string consumerKey: plasmoid.configuration.consKey
-	readonly property string consumerSecret: plasmoid.configuration.consSec
-	readonly property string accessToken: plasmoid.configuration.accToken
-	readonly property string accessTokenSec: plasmoid.configuration.accTokenSec
+	readonly property string consumer_key: plasmoid.configuration.consKey
+	readonly property string consumer_secret: plasmoid.configuration.consSec
+	readonly property string user_secret: plasmoid.configuration.accToken
+	readonly property string token_secret: plasmoid.configuration.accTokenSec
 	
 	Plasmoid.compactRepresentation: DragDrop.DropArea {
 		id: compactDropArea
@@ -276,19 +276,11 @@ Item {
 				enabled: validateContent()
 				
 				onClicked: {
-					function checkText() {
-						var tweetMsg = ""
-						if(inputQuery.text == "") {
-							tweetMsg = " "
-							backend.sendTweet(tweetMsg, filepath.toString(), consumerKey, consumerSecret, accessToken, accessTokenSec);
-						} else {
-							backend.sendTweet(inputQuery.text, filepath.toString(), consumerKey, consumerSecret, accessToken, accessTokenSec);
-						}
-					}
-					checkText();
-					filepath = "";
+					backend.sendTweet(inputQuery.text, filepath, consumer_key,
+									  consumer_secret, user_secret, token_secret);
 					inputQuery.text = "";
 					inputQuery.focus = false;
+					filepath = "";
 					previewFadeOut.running = true;
 					imgPreview.source = "";
 				}

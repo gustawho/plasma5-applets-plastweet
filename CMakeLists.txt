@@ -39,6 +39,3 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_subdirectory(src)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ltwitcurl -lcurl -ljson -std=c++11 -s")
-

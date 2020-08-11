@@ -32,8 +32,6 @@
 
 #include "backend.h"
 
-using namespace std;
-
 // TODO: Safely save/read keys (KWallet? KConfig? Ciphered file?)
 
 BackEnd::BackEnd(QObject *parent) : QObject(parent) {
@@ -43,81 +41,76 @@ BackEnd::~BackEnd() {
 }
 
 
-int BackEnd::sendTweet(const QString &tweetTxt, const QString &tweetImg, const QString &consKey, const QString &consSec, const QString &accToken, const QString &accTokenKey) {
-	// twitcurl takes std::string, but QML returns QString, so a conversion is necessary
-	string utf8_text = tweetTxt.toUtf8().constData();
-	string utf8_path_tmp = tweetImg.toUtf8().constData();
-	string utf8_path;
-	string tmpCK = consKey.toUtf8().constData();
-	string tmpCS = consSec.toUtf8().constData();
-	string tmpAK = accToken.toUtf8().constData();
-	string tmpTK = accTokenKey.toUtf8().constData();
-	if(utf8_path_tmp.empty()) {
-		utf8_path = "";
-	} else {
-		utf8_path = utf8_path_tmp.substr(7);;
+int BackEnd::sendTweet(const QString &message, const QString &image,
+					   const QString &consumer_key, const QString &consumer_secret,
+					   const QString &user_token, const QString &token_secret) {
+	std::string newPath = image.toStdString();
+	if(!newPath.empty()) {
+		newPath = newPath.substr(7);;
 	}
-	if(utf8_text.size() > 280) {
-		cout << "(!!) Status exceeds the character limit" << endl;
-	} else {
-		BackEnd objMain;
-		bool bRet = objMain.execMain(utf8_text, utf8_path, tmpCK, tmpCS, tmpAK, tmpTK);
-		if (!bRet) cout << "(!!) Error getting tweet message" << endl;
-	}
+
+	BackEnd backend;
+	bool response = backend.execMain(message.toStdString(), newPath,
+									 consumer_key.toStdString(), consumer_secret.toStdString(),
+									 user_token.toStdString(), token_secret.toStdString());
+	if (!response) std::cout << "(!!) Error getting tweet message" << std::endl;
+
 	return 0;
 }
 
-bool BackEnd::execMain(string strString, string strFilePath, string ck, string cs, string ak, string tk) {
+bool BackEnd::execMain(std::string message, std::string image,
+					   std::string consumer_key, std::string consumer_secret,
+					   std::string user_token, std::string token_secret) {
 	try {
 		// Set Twitter consumer key and secret,
 		//   OAuth access token key and secret
-		twitterObj.getOAuth().setConsumerKey(ck);
-		twitterObj.getOAuth().setConsumerSecret(cs);
-		twitterObj.getOAuth().setOAuthTokenKey(ak);
-		twitterObj.getOAuth().setOAuthTokenSecret(tk);
+		twitter.getOAuth().setConsumerKey(consumer_key);
+		twitter.getOAuth().setConsumerSecret(consumer_secret);
+		twitter.getOAuth().setOAuthTokenKey(user_token);
+		twitter.getOAuth().setOAuthTokenSecret(token_secret);
 
 		// Verify account credentials
-		if (!twitterObj.accountVerifyCredGet()) {
-			twitterObj.getLastCurlError(strReplyMsg);
-			cout << strReplyMsg << endl;
+		if (!twitter.accountVerifyCredGet()) {
+			twitter.getLastCurlError(api_response);
+			std::cout << api_response << std::endl;
 			return false;
 		}
 		
-		if(strFilePath.empty()) {
+		if(image.empty()) {
 			// Post a message
-			strReplyMsg = "";
-			if (twitterObj.statusUpdate(strString)) {
-				twitterObj.getLastWebResponse(strReplyMsg);
-				cout << strReplyMsg << endl;
+			api_response = "";
+			if (twitter.statusUpdate(api_response)) {
+				twitter.getLastWebResponse(api_response);
+				std::cout << api_response << std::endl;
 			} else {
-				twitterObj.getLastCurlError(strReplyMsg);
-				cout << strReplyMsg << endl;
+				twitter.getLastCurlError(api_response);
+				std::cout << api_response << std::endl;
 				return false;
 			}
 		} else {
 			// Post a message + media
-			bool result = twitterObj.uploadMedia(strFilePath);
+			bool result = twitter.uploadMedia(image);
 			if(result) {
-				string response = "";
-				twitterObj.getLastWebResponse(response);
-				cout << "Response: " << response << endl;
-				string::size_type start = 12;
-				string::size_type length = 19;
-				string* sub = new string[1] {response.substr(start,length)};
-				cout << "Media ID: " << sub << endl;
-				if (twitterObj.statusUpdateWithMedia(string(strString), sub, 1)) {
-					twitterObj.getLastWebResponse(response);
-					cout << response << endl;
+				std::string response = "";
+				twitter.getLastWebResponse(response);
+				std::cout << "Response: " + response << std::endl;
+				std::string::size_type start = 12;
+				std::string::size_type length = 19;
+				std::string* sub = new std::string[1] {response.substr(start,length)};
+				std::cout << "Media ID: " << sub << std::endl;
+				if (twitter.statusUpdateWithMedia(message, sub, 1)) {
+					twitter.getLastWebResponse(response);
+					std::cout << response << std::endl;
 				} else {
-					twitterObj.getLastCurlError(response);
-					cout << response << endl;
+					twitter.getLastCurlError(response);
+					std::cout << response << std::endl;
 				}
 			} else {
-				cout << "(!!) Error uploading media: " << strReplyMsg << endl;
+				std::cout << "(!!) Error uploading media: " + api_response << std::endl;
 			}
 		}
 	} catch (char *e) {
-		cout << "[EXCEPTION] " << e << endl;
+		std::cout << "[EXCEPTION] " << e << std::endl;
 		return false;
 	}
 	// emit tweetSent(); // FIXME

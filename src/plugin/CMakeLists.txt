@@ -5,7 +5,7 @@ set(plastweet_SRCS
 
 add_library(plastweet SHARED ${plastweet_SRCS})
 
-target_link_libraries(plastweet Qt5::Quick KF5::Plasma KF5::I18n twitcurl oauth curl jsoncpp)
+target_link_libraries(plastweet Qt5::Quick KF5::Plasma KF5::I18n twitcurl oauthlib curl)
 
 install(TARGETS plastweet DESTINATION ${QML_INSTALL_DIR}/org/kde/plastweet)
 
