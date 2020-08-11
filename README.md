@@ -1,19 +1,20 @@
+![Screenshot](./img/preview.png)
 # Plastweet
-_A small plasmoid to tweet directly from your Plasma desktop (WiP)_
+A small plasmoid to post tweets directly from your Plasma desktop (WiP)
+
+<a href="https://www.kdevelop.org/" target="_blank"><img src="img/made-with-kdevelop.png" width="150"></a>
+<a href="https://store.kde.org/p/1407433/" target="_blank"><img src="img/kde-store.png" width="150" style="padding-left:0.5rem;"></a>
 
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It aims to be as simple and lightweight as possible.
 
-<p align="center">
-<img src="screenshots/plastweet.png">
-</p>
-
 ## Features
 Currently, posting tweet updates is the only available function. Although UI for adding images and videos is already there, it doesn't actually work with the JavaScript implementation (I'm working on it!).
-However, you still can get this feature if you clone and compile the previous version (check the `cxx-backend` branch), but keep in mind that it requires additional dependencies and to be compiled.
+However, you can still get this feature if you clone and compile the previous version (check the `cxx-backend` branch), but keep in mind that it requires additional dependencies and to be compiled.
 
 ## Installation
 ### User
-Copy or move the `package` directory inside `src` to `~/.local/share/plasma/plasmoids` (create the appropriate directories as needed).
+- Install it directly from the KDE Store! (recommended)
+- Copy or move the `package` directory inside `src` to `~/.local/share/plasma/plasmoids` (create the appropriate directories as needed).
 
 ### System-wide
 Open a terminal in the cloned directory and run:
@@ -50,7 +51,3 @@ sudo make install
 * [crypto-js](https://github.com/brix/crypto-js) (MIT, _twitter-lite dependency_)
 * [oauth-1.0a](https://github.com/ddo/oauth-1.0a) (MIT, _twitter-lite dependency_)
 * [querystring](https://github.com/Gozala/querystring) (MIT, _twitter-lite dependency_)
-
-<p align="center">
-<img src="screenshots/made-with-kdevelop.png" width="70%">
-</p>
