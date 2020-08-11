@@ -15,7 +15,7 @@ The primary goal of this project is to bring the ability to quickly send tweets 
 * KF5 & Plasma
 
 ## Installation
-Currently, posting text statuses is the only available feature and as OAuth login isn't implemented yet, you need to register an application in [apps.twitter.com](https://apps.twitter.com) and configure the plasmoid accordingly.
+Currently, posting tweets (both text only and with one image attached) is the only available feature and as OAuth login isn't implemented yet, you need to register an application in [apps.twitter.com](https://apps.twitter.com) and configure the plasmoid accordingly.
 
 ### User
 ```Bash
