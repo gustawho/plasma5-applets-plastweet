@@ -33,7 +33,7 @@ set(KF5_MIN_VERSION "5.68.0")
 add_definitions(-fexceptions)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Quick)
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma I18n)
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma I18n Notifications)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

@@ -1,28 +1,29 @@
 /*
- * 
- *	Copyright 2020 Gustavo Castro <gustawho@gmail.com>
- *	
- *	This file is part of Plastweet.
- * 
- *	Plastweet is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
- * 
- *	Plastweet is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- * 
- *	You should have received a copy of the GNU General Public License
- *	along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
+ * Copyright 2020 Gustavo Castro <gustawho@gmail.com>
+ *
+ * This file is part of Plastweet.
+ *
+ * Plastweet is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Plastweet is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 
 // TODO:
 // * Implement multi-upload (pictures and video) and OAuth login
 // * Use KNotifications on events (unable to login, media upload, tweet update status)
-// * A background service
+// * Implement a background service to receive user interactions
+// * Safely store credentials (KWallet? KConfig?)
 
 #include <iostream>
 #include <string>
@@ -30,9 +31,10 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "backend.h"
+#include <json/json.h>
+#include <json/value.h>
 
-// TODO: Safely save/read keys (KWallet? KConfig? Ciphered file?)
+#include "backend.h"
 
 BackEnd::BackEnd(QObject *parent) : QObject(parent) {
 }
@@ -40,27 +42,38 @@ BackEnd::BackEnd(QObject *parent) : QObject(parent) {
 BackEnd::~BackEnd() {
 }
 
-
-int BackEnd::sendTweet(const QString &message, const QString &image,
-					   const QString &consumer_key, const QString &consumer_secret,
-					   const QString &user_token, const QString &token_secret) {
+void BackEnd::send_tweet(
+	const QString &message,
+	const QString &image,
+	const QString &consumer_key,
+	const QString &consumer_secret,
+	const QString &user_token,
+	const QString &token_secret) {
+	
+	// Remove "file://" from the image path
 	std::string newPath = image.toStdString();
 	if(!newPath.empty()) {
-		newPath = newPath.substr(7);;
+		newPath = newPath.substr(7);
 	}
 
 	BackEnd backend;
-	bool response = backend.execMain(message.toStdString(), newPath,
-									 consumer_key.toStdString(), consumer_secret.toStdString(),
-									 user_token.toStdString(), token_secret.toStdString());
+	bool response = backend.execMain(
+		message.toStdString(),
+		newPath,
+		consumer_key.toStdString(),
+		consumer_secret.toStdString(),
+		user_token.toStdString(),
+		token_secret.toStdString());
 	if (!response) std::cout << "(!!) Error getting tweet message" << std::endl;
-
-	return 0;
 }
 
-bool BackEnd::execMain(std::string message, std::string image,
-					   std::string consumer_key, std::string consumer_secret,
-					   std::string user_token, std::string token_secret) {
+bool BackEnd::execMain(
+	std::string message,
+	std::string image,
+	std::string consumer_key,
+	std::string consumer_secret,
+	std::string user_token,
+	std::string token_secret) {
 	try {
 		// Set Twitter consumer key and secret,
 		//   OAuth access token key and secret
@@ -79,9 +92,9 @@ bool BackEnd::execMain(std::string message, std::string image,
 		if(image.empty()) {
 			// Post a message
 			api_response = "";
-			if (twitter.statusUpdate(api_response)) {
+			if (twitter.statusUpdate(message)) {
 				twitter.getLastWebResponse(api_response);
-				std::cout << api_response << std::endl;
+				// std::cout << api_response << std::endl;
 			} else {
 				twitter.getLastCurlError(api_response);
 				std::cout << api_response << std::endl;
@@ -93,14 +106,15 @@ bool BackEnd::execMain(std::string message, std::string image,
 			if(result) {
 				std::string response = "";
 				twitter.getLastWebResponse(response);
-				std::cout << "Response: " + response << std::endl;
-				std::string::size_type start = 12;
-				std::string::size_type length = 19;
-				std::string* sub = new std::string[1] {response.substr(start,length)};
-				std::cout << "Media ID: " << sub << std::endl;
-				if (twitter.statusUpdateWithMedia(message, sub, 1)) {
+				
+				Json::Value root;
+				std::istringstream sin(response);
+				sin >> root;
+				std::string* media_id = new std::string[1] {root.get("media_id", "NULL").asString()};
+
+				if (twitter.statusUpdateWithMedia(message, media_id, 1)) {
 					twitter.getLastWebResponse(response);
-					std::cout << response << std::endl;
+					// std::cout << response << std::endl;
 				} else {
 					twitter.getLastCurlError(response);
 					std::cout << response << std::endl;

@@ -2,7 +2,6 @@
 #include "backend.h"
 
 #include <QtQml>
-#include <QDebug>
 
 void Plastweet::registerTypes(const char *uri) {
     Q_ASSERT(uri == QLatin1String("org.kde.plastweet"));
