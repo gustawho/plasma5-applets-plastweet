@@ -1,22 +1,22 @@
 /*
- * 
- *	Copyright 2020 Gustavo Castro <gustawho@gmail.com>
- *	
- *	This file is part of Plastweet.
- * 
- *	Plastweet is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
- * 
- *	Plastweet is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- * 
- *	You should have received a copy of the GNU General Public License
- *	along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
+ * Copyright 2020 Gustavo Castro <gustawho@gmail.com>
+ *
+ * This file is part of Plastweet.
+ *
+ * Plastweet is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Plastweet is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Plastweet.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 
 // TODO:
@@ -46,18 +46,18 @@ Item {
 		id: compactDropArea
 		onDragEnter: activationTimer.restart()
 		onDragLeave: activationTimer.stop()
-
+		
 		Timer {
 			id: activationTimer
 			interval: 250 // matches taskmanager delay
 			onTriggered: plasmoid.expanded = true
 		}
-
+		
 		MouseArea {
 			anchors.fill: parent
 			hoverEnabled: true
 			onClicked: plasmoid.expanded = !plasmoid.expanded
-
+			
 			PlasmaCore.IconItem {
 				anchors.fill: parent
 				source: "im-twitter"
@@ -75,7 +75,6 @@ Item {
 		Layout.minimumWidth: units.gridUnit * 15
 		
 		property string filepath: ""
-		property string tweetMsg: ""
 		
 		BackEnd {
 			id: backend
@@ -128,7 +127,7 @@ Item {
 				}
 				DropArea {
 					id: dropArea;
-					anchors.fill: topRowLayout;
+					anchors.fill: parent;
 					
 					function inputToString(object) {
 						var string = "";
@@ -206,18 +205,18 @@ Item {
 			}
 			
 			PlasmaComponents.Button {
-					id: removeImg
-					iconSource: "edit-delete-remove"
-					tooltip: i18n("Remove media")
-					anchors.horizontalCenter: parent.horizontalCenter
-					anchors.verticalCenter: parent.verticalCenter
-					onClicked: {
-						fileDialog.close();
-						filepath = "";
-						previewFadeIn.running = false;
-						previewFadeOut.running = true;
-					}
+				id: removeImg
+				iconSource: "edit-delete-remove"
+				tooltip: i18n("Remove media")
+				anchors.horizontalCenter: parent.horizontalCenter
+				anchors.verticalCenter: parent.verticalCenter
+				onClicked: {
+					fileDialog.close();
+					filepath = "";
+					previewFadeIn.running = false;
+					previewFadeOut.running = true;
 				}
+			}
 		}
 		
 		RowLayout {
@@ -225,12 +224,12 @@ Item {
 			Layout.alignment: Qt.AlignRight
 			Layout.fillWidth: true
 			
-			// TODO: Implement GIF browse/upload
-			/*PlasmaComponents.Button {
-				id: browseGifs
-				iconSource: "image-gif"
-				tooltip: i18n("Add a GIF")
-			}*/
+// 			TODO: Implement GIF browse/upload
+// 			PlasmaComponents.Button {
+// 				id: browseGifs
+// 				iconSource: "image-gif"
+// 				tooltip: i18n("Add a GIF")
+// 			}
 			
 			FileDialog {
 				id: fileDialog
@@ -276,8 +275,29 @@ Item {
 				enabled: validateContent()
 				
 				onClicked: {
-					backend.sendTweet(inputQuery.text, filepath, consumer_key,
-									  consumer_secret, user_secret, token_secret);
+					function tweet() {
+						if(inputQuery.text == "") {
+							var dummyMsg = " ";
+							backend.send_tweet(
+								dummyMsg,
+								filepath,
+								consumer_key,
+								consumer_secret,
+								user_secret,
+								token_secret
+							);
+						} else {
+							backend.send_tweet(
+								inputQuery.text,
+								filepath,
+								consumer_key,
+								consumer_secret,
+								user_secret,
+								token_secret
+							);
+						}
+					}
+					tweet();
 					inputQuery.text = "";
 					inputQuery.focus = false;
 					filepath = "";
@@ -292,9 +312,9 @@ Item {
 			target: imgCanvas;
 			property: "visible";
 			to: true;
-			easing.type: Easing.InOutQuad
+			easing.type: Easing.InOutQuad;
 			duration: 150;
-			running: false;
+			running: false
 		}
 		
 		PropertyAnimation {
@@ -302,10 +322,9 @@ Item {
 			target: imgCanvas;
 			property: "visible";
 			to: false;
-			easing.type: Easing.InOutQuad
+			easing.type: Easing.InOutQuad;
 			duration: 150;
-			running: false;
+			running: false
 		}
-		
 	}
 }
