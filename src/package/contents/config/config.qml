@@ -33,4 +33,9 @@ ConfigModel {
 		icon: 'preferences-other'
 		source: 'config/ConfigGeneral.qml'
 	}
+// 	ConfigCategory {
+// 		name: i18n('Notifications')
+// 		icon: 'preferences-desktop-notifications'
+// 		source: 'config/ConfigNotifications.qml'
+// 	}
 }
