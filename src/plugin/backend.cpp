@@ -31,8 +31,12 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+// If build fails, try changing this
 #include <json/json.h>
 #include <json/value.h>
+// to this
+//#include <jsoncpp/json/json.h>
+//#include <jsoncpp/json/value.h>
 
 #include "backend.h"
 
@@ -101,10 +105,10 @@ bool BackEnd::execMain(
 	std::istringstream jsonDoc(api_response);
 	jsonDoc >> jsonResponse;
 	const Json::Value chError = jsonResponse["errors"];
-	std::cout << chError << std::endl;
+	// std::cout << chError << std::endl;
 
 	// Verify account credentials
-	if (chError) {
+	if (!chError.empty()) {
 		twitter.getLastCurlError(api_response);
 		std::cout << api_response << std::endl;
 		BackEnd::sendNotification(
