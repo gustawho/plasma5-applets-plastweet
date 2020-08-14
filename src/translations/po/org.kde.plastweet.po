@@ -1,14 +1,14 @@
 # Plastweet translation template
-# Copyright (C) 2017 This file is part of Plastweet
+# Copyright (C) 2020 This file is part of Plastweet
 # This file is distributed under the same license as the Plastweet package.
-# Gustavo Castro <gustawho@gmail.com>, 2018.
+# Gustavo Castro <gustawho@gmail.com>, 2020.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: https://github.com/gustawho/plastweet/issues\n"
-"POT-Creation-Date: 2017-11-13 02:12+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/gustawho/plasma5-applets-plastweet/issues\n"
+"POT-Creation-Date: 2020-07-27 00:35+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Retweets"
 msgstr ""
 
-msgid "Likes"
+msgid "Replies"
 msgstr ""
 
 msgid "Sync interval:"
@@ -38,28 +38,43 @@ msgstr ""
 msgid "What's happening?"
 msgstr ""
 
-msgid "Add a picture"
+msgid "Add an image or video"
+msgstr ""
+
+msgid "Remove media"
+msgstr ""
+
+msgid "Drop an image or video"
 msgstr ""
 
 msgid "Tweet"
 msgstr ""
 
+msgid "Send Tweet"
+msgstr ""
+
 msgid "API Settings"
 msgstr ""
 
-msgid "Third party clients have very limited access to Twitter with stricter rate limit, fewer features, and token limit. It's recommended to use your own key. You first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
+msgid "Third-party clients have very limited access to Twitter with stricter rate limit and fewer features. It's recommended to use your own key. To do so, you first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
 msgstr ""
 
-msgid "Consumer Key (API Key):"
+msgid "Consumer API keys:"
 msgstr ""
 
-msgid "Consumer Secret (API Secret):"
+msgid "Access token & access token secret:"
 msgstr ""
 
-msgid "Access Token:"
+msgid "Consumer Key"
 msgstr ""
 
-msgid "Access Token Secret:"
+msgid "Consumer Secret"
+msgstr ""
+
+msgid "Access Token"
+msgstr ""
+
+msgid "Access Token Secret"
 msgstr ""
 
 msgid "Login"
@@ -69,4 +84,25 @@ msgid "Generate token"
 msgstr ""
 
 msgid "Account"
+msgstr ""
+
+msgid "Media files"
+msgstr ""
+
+msgid "Tweet sent"
+msgstr ""
+
+msgid "Your status update has been successfully sent."
+msgstr ""
+
+msgid "Tweet not sent"
+msgid ""
+
+msgid "There has been an error sending your tweet, try again."
+msgstr ""
+
+msgid "Authentication problem"
+msgstr ""
+
+msgid "There has been a problem validating your account, check your credentials and try again."
 msgstr ""

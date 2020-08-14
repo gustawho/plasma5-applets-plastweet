@@ -48,8 +48,8 @@ void BackEnd::send_tweet(
 	const QString &consumer_key,
 	const QString &consumer_secret,
 	const QString &user_token,
-	const QString &token_secret) {
-	
+	const QString &token_secret
+) {
 	// Remove "file://" from the image path
 	std::string newPath = image.toStdString();
 	if(!newPath.empty()) {
@@ -63,8 +63,23 @@ void BackEnd::send_tweet(
 		consumer_key.toStdString(),
 		consumer_secret.toStdString(),
 		user_token.toStdString(),
-		token_secret.toStdString());
-	if (!response) std::cout << "(!!) Error getting tweet message" << std::endl;
+		token_secret.toStdString()
+	);
+	if (!response) {
+		backend.sendNotification(
+			QStringLiteral("tweetNotSent"),
+			QStringLiteral("error"),
+			i18n("Tweet not sent"),
+			i18n("There has been an error sending your tweet, try again.")
+		);
+	} else {
+		backend.sendNotification(
+			QStringLiteral("tweetSent"),
+			QStringLiteral("dialog-ok"),
+			i18n("Tweet sent"),
+			i18n("Your status update has been successfully sent.")
+		);
+	}
 }
 
 bool BackEnd::execMain(
@@ -73,28 +88,39 @@ bool BackEnd::execMain(
 	std::string consumer_key,
 	std::string consumer_secret,
 	std::string user_token,
-	std::string token_secret) {
-	try {
-		// Set Twitter consumer key and secret,
-		//   OAuth access token key and secret
-		twitter.getOAuth().setConsumerKey(consumer_key);
-		twitter.getOAuth().setConsumerSecret(consumer_secret);
-		twitter.getOAuth().setOAuthTokenKey(user_token);
-		twitter.getOAuth().setOAuthTokenSecret(token_secret);
+	std::string token_secret
+) {
+	twitter.getOAuth().setConsumerKey(consumer_key);
+	twitter.getOAuth().setConsumerSecret(consumer_secret);
+	twitter.getOAuth().setOAuthTokenKey(user_token);
+	twitter.getOAuth().setOAuthTokenSecret(token_secret);
+	twitter.accountVerifyCredGet();
+	twitter.getLastWebResponse(api_response);
+	
+	Json::Value jsonResponse;
+	std::istringstream jsonDoc(api_response);
+	jsonDoc >> jsonResponse;
+	const Json::Value chError = jsonResponse["errors"];
+	std::cout << chError << std::endl;
 
-		// Verify account credentials
-		if (!twitter.accountVerifyCredGet()) {
-			twitter.getLastCurlError(api_response);
-			std::cout << api_response << std::endl;
-			return false;
-		}
-		
+	// Verify account credentials
+	if (chError) {
+		twitter.getLastCurlError(api_response);
+		std::cout << api_response << std::endl;
+		BackEnd::sendNotification(
+			QStringLiteral("authError"),
+			QStringLiteral("error"),
+			i18n("Authentication problem"),
+			i18n("There has been a problem validating your account, check your credentials and try again.")
+		);
+		return false;
+	} else {
 		if(image.empty()) {
 			// Post a message
-			api_response = "";
 			if (twitter.statusUpdate(message)) {
 				twitter.getLastWebResponse(api_response);
 				// std::cout << api_response << std::endl;
+				return true;
 			} else {
 				twitter.getLastCurlError(api_response);
 				std::cout << api_response << std::endl;
@@ -103,30 +129,28 @@ bool BackEnd::execMain(
 		} else {
 			// Post a message + media
 			bool result = twitter.uploadMedia(image);
-			if(result) {
+			if (result) {
 				std::string response = "";
 				twitter.getLastWebResponse(response);
 				
-				Json::Value root;
-				std::istringstream sin(response);
-				sin >> root;
-				std::string* media_id = new std::string[1] {root.get("media_id", "NULL").asString()};
+				Json::Value uploadResponse;
+				std::istringstream jsonResponse(response);
+				jsonResponse >> uploadResponse;
+				std::string* media_id = new std::string[1] {uploadResponse.get("media_id", "NULL").asString()};
 
 				if (twitter.statusUpdateWithMedia(message, media_id, 1)) {
 					twitter.getLastWebResponse(response);
 					// std::cout << response << std::endl;
+					return true;
 				} else {
 					twitter.getLastCurlError(response);
 					std::cout << response << std::endl;
+					return false;
 				}
 			} else {
 				std::cout << "(!!) Error uploading media: " + api_response << std::endl;
+				return false;
 			}
 		}
-	} catch (char *e) {
-		std::cout << "[EXCEPTION] " << e << std::endl;
-		return false;
 	}
-	// emit tweetSent(); // FIXME
-	return true;
 }

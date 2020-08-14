@@ -3,105 +3,88 @@
 # This file is distributed under the same license as the Plastweet package.
 # Gustavo Castro <gustawho@gmail.com>, 2020.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/gustawho/plasma5-applets-plastweet/issues\n"
 "POT-Creation-Date: 2020-07-27 00:35+0600\n"
-"PO-Revision-Date: 2020-08-13 19:19+0600\n"
-"Last-Translator: Gustavo Castro <gustawho@gmail.com>\n"
-"Language: en\n"
+"PO-Revision-Date: 2020-07-28 13:21+0200\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"X-Generator: Poedit 2.4\n"
 
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Meldingen"
 
 msgid "Mentions and replies"
-msgstr ""
+msgstr "Vermeldingen en antwoorden"
 
 msgid "Retweets"
-msgstr ""
+msgstr "Retweets"
 
 msgid "Replies"
-msgstr ""
+msgstr "Antwoorden"
 
 msgid "Sync interval:"
-msgstr ""
+msgstr "Synchronisatietussenpoos:"
 
 msgid "What's happening?"
-msgstr ""
+msgstr "Waar denk je aan?"
 
 msgid "Add an image or video"
-msgstr ""
+msgstr "Afbeelding of video toevoegen"
 
 msgid "Remove media"
-msgstr ""
+msgstr "Media verwijderen"
 
 msgid "Drop an image or video"
-msgstr ""
+msgstr "Sleep een afbeelding of video hierheen"
 
 msgid "Tweet"
-msgstr ""
+msgstr "Tweeten"
 
 msgid "Send Tweet"
-msgstr ""
+msgstr "Tweet versturen"
 
 msgid "API Settings"
-msgstr ""
+msgstr "API-instellingen"
 
 msgid "Third-party clients have very limited access to Twitter with stricter rate limit and fewer features. It's recommended to use your own key. To do so, you first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
-msgstr ""
+msgstr "Externe Twitter-clients hebben beperkt toegang tot Twitter. Ze beschikken hierdoor over een strenger opvraaglimiet en minder functies. Het aanbevolen om je eigen sleutel te gebruiken. Hiervoor moet je een nieuwe app registreren (als je dat nog niet gedaan hebt) op <a href='https://apps.twitter.com'></a>."
 
 msgid "Consumer API keys:"
-msgstr ""
+msgstr "Gebruikerssleutels:"
 
 msgid "Access token & access token secret:"
-msgstr ""
+msgstr "Toegangssleutel en -geheim:"
 
 msgid "Consumer Key"
-msgstr ""
+msgstr "Gebruikerssleutel"
 
 msgid "Consumer Secret"
-msgstr ""
+msgstr "Gebruikersgeheim"
 
 msgid "Access Token"
-msgstr ""
+msgstr "Toegangssleutel"
 
 msgid "Access Token Secret"
-msgstr ""
+msgstr "Toegangssleutelgeheim"
 
 msgid "Login"
-msgstr ""
+msgstr "Inloggen"
 
 msgid "Generate token"
-msgstr ""
+msgstr "Toegangssleutel genereren"
 
 msgid "Account"
-msgstr ""
+msgstr "Account"
 
 msgid "Media files"
-msgstr ""
-
-msgid "Tweet sent"
-msgstr ""
-
-msgid "Your status update has been successfully sent."
-msgstr ""
-
-msgid "Tweet not sent"
-msgid ""
-
-msgid "There has been an error sending your tweet, try again."
-msgstr ""
-
-msgid "Authentication problem"
-msgstr ""
-
-msgid "There has been a problem validating your account, check your credentials and try again."
-msgstr ""
+msgstr "Mediabestanden"

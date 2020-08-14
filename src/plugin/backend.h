@@ -23,7 +23,12 @@
 #define BACKEND_H
 
 #include <string>
+
 #include <QObject>
+
+#include <KNotification>
+#include <KLocalizedString>
+
 #include "twitcurl.h"
 
 class BackEnd : public QObject {
@@ -48,8 +53,21 @@ public:
 		std::string user_token,
 		std::string token_secret
 	);
+	Q_SCRIPTABLE void sendNotification(
+		const QString &eventId,
+		const QString &iconName,
+		const QString &title,
+		const QString &text
+	) {
+		KNotification* notification = new KNotification(eventId);
+		notification->setIconName(iconName);
+		notification->setComponentName(QStringLiteral("plastweet"));
+		notification->setTitle(title);
+		notification->setText(text);
+		notification->sendEvent();
+	}
 signals:
-// 	Q_INVOKABLE void tweetSent(); // FIXME
+	
 private:
 	twitCurl twitter;
 	std::string api_response;

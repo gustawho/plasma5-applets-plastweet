@@ -11,52 +11,52 @@ msgstr ""
 "POT-Creation-Date: 2020-07-27 00:35+0600\n"
 "PO-Revision-Date: 2020-08-13 19:19+0600\n"
 "Last-Translator: Gustavo Castro <gustawho@gmail.com>\n"
-"Language: en\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Notificaciones"
 
 msgid "Mentions and replies"
-msgstr ""
+msgstr "Menciones y respuestas"
 
 msgid "Retweets"
-msgstr ""
+msgstr "Retweets"
 
 msgid "Replies"
-msgstr ""
+msgstr "Respuestas"
 
 msgid "Sync interval:"
-msgstr ""
+msgstr "Intervalo de sincronización"
 
 msgid "What's happening?"
-msgstr ""
+msgstr "¿Qué está pasando?"
 
 msgid "Add an image or video"
-msgstr ""
+msgstr "Añadir una imagen o video"
 
 msgid "Remove media"
-msgstr ""
+msgstr "Quitar media"
 
 msgid "Drop an image or video"
-msgstr ""
+msgstr "Suelta una imagen o video"
 
 msgid "Tweet"
-msgstr ""
+msgstr "Twittear"
 
 msgid "Send Tweet"
-msgstr ""
+msgstr "Enviar tweet"
 
 msgid "API Settings"
-msgstr ""
+msgstr "Ajustes de API"
 
 msgid "Third-party clients have very limited access to Twitter with stricter rate limit and fewer features. It's recommended to use your own key. To do so, you first have to register a new application (if you don't already have one) <a href='https://apps.twitter.com'>here</a>."
-msgstr ""
+msgstr "Los clientes de terceros tienen acceso restringido a Twitter con un límite de velocidad más estricto y menos funciones. Se recomienda usar tu propia clave. Para hacerlo, primero debes registrar una nueva aplicación (si aún no tienes una) <a href='https://apps.twitter.com'> aquí </a>."
 
 msgid "Consumer API keys:"
 msgstr ""
@@ -77,31 +77,32 @@ msgid "Access Token Secret"
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "Iniciar sesión"
 
 msgid "Generate token"
-msgstr ""
+msgstr "Generar token"
 
 msgid "Account"
-msgstr ""
+msgstr "Cuenta"
 
 msgid "Media files"
-msgstr ""
+msgstr "Archivos multimedia"
 
 msgid "Tweet sent"
-msgstr ""
+msgstr "Tweet enviado"
 
 msgid "Your status update has been successfully sent."
-msgstr ""
+msgstr "Tu tweet ha sido enviado correctamente"
 
 msgid "Tweet not sent"
-msgid ""
+msgid "Tweet no enviado"
 
 msgid "There has been an error sending your tweet, try again."
-msgstr ""
+msgstr "Ha ocurrido un error al enviar tu tweet, inténtalo de nuevo"
 
 msgid "Authentication problem"
-msgstr ""
+msgstr "Problema de autenticación"
 
 msgid "There has been a problem validating your account, check your credentials and try again."
-msgstr ""
+msgstr "Ha ocurrido un error al validar tu cuenta"
+

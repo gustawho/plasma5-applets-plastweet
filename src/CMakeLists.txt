@@ -6,3 +6,5 @@ include_directories (
 
 add_subdirectory(plugin)
 add_subdirectory(translations)
+
+install(FILES plastweet.notifyrc DESTINATION ${KNOTIFYRC_INSTALL_DIR})

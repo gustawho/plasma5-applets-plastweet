@@ -1,0 +1,25 @@
+[Global]
+IconName=im-twitter
+Name=Plastweet
+Comment=Plastweet
+
+[Event/tweetSent]
+Name=Tweet sent
+Name[es]=Tweet enviado
+Comment=Your status update has been successfully sent
+Comment[es]=Tu tweet ha sido enviado correctamente
+Action=Popup
+
+[Event/tweetNotSent]
+Name=Tweet not sent
+Name[es]=Tweet no enviado
+Comment=There has been an error sending your tweet, try again
+Comment[es]=Ha ocurrido un error al enviar tu tweet, inténtalo de nuevo
+Action=Popup
+
+[Event/authError]
+Name=Authentication problem
+Name[es]=Problema de autenticación
+Comment=There has been a problem validating your account
+Comment[es]=Ha ocurrido un error al validar tu cuenta
+Action=Popup
