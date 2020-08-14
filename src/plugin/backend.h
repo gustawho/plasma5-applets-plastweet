@@ -29,7 +29,7 @@
 #include <KNotification>
 #include <KLocalizedString>
 
-#include "twitcurl.h"
+#include "./twitcurl/twitcurl.h"
 
 class BackEnd : public QObject {
 	Q_OBJECT

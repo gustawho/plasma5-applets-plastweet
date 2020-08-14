@@ -8,7 +8,6 @@ A small plasmoid to post tweets directly from your Plasma desktop (WiP)
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
 
 ## Dependencies
-* [Twitcurl](https://github.com/gustawho/twitcurl)
 * cURL
 * [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
 * Extra CMake Modules
