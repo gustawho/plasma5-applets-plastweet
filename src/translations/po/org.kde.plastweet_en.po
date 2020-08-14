@@ -95,7 +95,7 @@ msgid "Your status update has been successfully sent."
 msgstr ""
 
 msgid "Tweet not sent"
-msgid ""
+msgstr ""
 
 msgid "There has been an error sending your tweet, try again."
 msgstr ""

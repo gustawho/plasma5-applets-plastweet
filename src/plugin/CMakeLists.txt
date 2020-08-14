@@ -1,7 +1,4 @@
-set(plastweet_SRCS
-	backend.cpp
-	plastweet.cpp
-	)
+set(plastweet_SRCS backend.cpp plastweet.cpp)
 
 add_library(plastweet SHARED ${plastweet_SRCS})
 
