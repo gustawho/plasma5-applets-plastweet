@@ -41,6 +41,7 @@ Item {
 	readonly property string consumer_secret: plasmoid.configuration.consSec
 	readonly property string user_secret: plasmoid.configuration.accToken
 	readonly property string token_secret: plasmoid.configuration.accTokenSec
+	readonly property bool trayIcon: plasmoid.configuration.iconThemeLight
 	
 	Plasmoid.compactRepresentation: DragDrop.DropArea {
 		id: compactDropArea
@@ -60,7 +61,7 @@ Item {
 			
 			PlasmaCore.IconItem {
 				anchors.fill: parent
-				source: "im-twitter"
+				source: trayIcon ? "plastweet" : "plastweet-dark"
 				colorGroup: PlasmaCore.ColorScope.colorGroup
 				active: parent.containsMouse
 			}

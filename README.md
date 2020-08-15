@@ -1,11 +1,12 @@
-![Screenshot](./img/preview.png)
-# Plastweet
+# Plastweet<img src="img/plastweet.svg" style="height: 1em; width: 1em;">
 A small plasmoid to post tweets directly from your Plasma desktop (WiP)
 
 <a href="https://www.kdevelop.org/" target="_blank"><img src="img/made-with-kdevelop.png" width="150"></a>
 <a href="https://store.kde.org/p/1407433/" target="_blank"><img src="img/kde-store.png" width="150" style="padding-left:0.5rem;"></a>
 
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
+
+![Screenshot](./img/preview.png)
 
 ## Dependencies
 * cURL

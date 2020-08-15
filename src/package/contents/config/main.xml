@@ -6,10 +6,7 @@
 	<kcfgfile name=""/>
 
 	<group name="General">
-		<entry name="defaultCred" type="bool">
-			<label>Consumer Key</label>
-			<default>true</default>
-		</entry>
+		<!-- API settings -->
 		<entry name="consKey" type="String">
 			<label>Consumer Key</label>
 			<default></default>
@@ -26,6 +23,15 @@
 			<label>Access Token Secret</label>
 			<default></default>
 		</entry>
+		
+		<!-- Tray icon theme -->
+		<entry name="iconThemeLight" type="Bool">
+			<label>Use dark icon for light panels</label>
+			<default>true</default>
+		</entry>
+		<entry name="iconThemeDark" type="Bool">
+			<label>Use light icon for dark panels</label>
+			<default>false</default>
+		</entry>
 	</group>
-
-</kcfg> 
+</kcfg>
