@@ -6,7 +6,9 @@ A small plasmoid to post tweets directly from your Plasma desktop (WiP)
 
 The primary goal of this project is to bring the ability to quickly send tweets without opening your browser or any other program. It has to be as simple and lightweight as possible.
 
-![Screenshot](./img/preview.png)
+![Screenshot](./img/preview01.png)
+
+![Plastweet in openSUSE](./img/preview02.png)
 
 ## Dependencies
 * cURL
@@ -19,16 +21,23 @@ Currently, posting tweets (both text only and with one image attached) is the on
 
 ### Package dependencies
 
-* Ubuntu:
+* Kubuntu, KDE Neon:
 ```
 sudo apt install build-essential cmake extra-cmake-modules plasma-workspace-dev \
   gettext libkf5notifyconfig-dev libkf5notifications-dev libcurl4-gnutls-dev libjsoncpp-dev
 ```
 > Note: JsonCpp headers might be located in a different path than the one referenced in Plastweet's code. If build fails, please open `src/plugin/backend.cpp` and fix the `#include` lines, then try again.
 
-* Arch Linux:
+* Arch Linux, Manjaro, KaOS:
 ```
 sudo pacman -S base-devel git extra-cmake-modules jsoncpp qt5-graphicaleffects knotifications
+```
+
+* openSUSE:
+```
+sudo zypper in git extra-cmake-modules jsoncpp-devel libcurl-devel \
+  plasma5-workspace-devel plasma-framekwork-devel knotifications-devel \
+  libQt5Core-devel libQt5QuickControls2-devel
 ```
 
 ### Build
