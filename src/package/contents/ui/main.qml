@@ -40,7 +40,7 @@ Item {
 	readonly property string consumerSecret: plasmoid.configuration.consSec
 	readonly property string accessToken: plasmoid.configuration.accToken
 	readonly property string accessTokenSec: plasmoid.configuration.accTokenSec
-	readonly property int trayIcon: plasmoid.configuration.iconTheme
+	readonly property bool trayIcon: plasmoid.configuration.iconThemeLight
 	
 	Plasmoid.compactRepresentation: DragDrop.DropArea {
 		id: compactDropArea
@@ -60,7 +60,7 @@ Item {
 
 			PlasmaCore.IconItem {
 				anchors.fill: parent
-				source: (trayIcon == 0) ? "./plastweet.svg" : "./plastweet-dark.svg"
+				source: trayIcon ? "plastweet" : "plastweet-dark"
 				colorGroup: PlasmaCore.ColorScope.colorGroup
 				active: parent.containsMouse
 			}

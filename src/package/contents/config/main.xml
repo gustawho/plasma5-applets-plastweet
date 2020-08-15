@@ -25,9 +25,13 @@
 		</entry>
 		
 		<!-- Tray icon theme -->
-		<entry name="iconTheme" type="int">
-			<label>Icon theme</label>
-			<default>0</default>
+		<entry name="iconThemeLight" type="Bool">
+			<label>Use dark icon for light panels</label>
+			<default>true</default>
+		</entry>
+		<entry name="iconThemeDark" type="Bool">
+			<label>Use light icon for dark panels</label>
+			<default>false</default>
 		</entry>
 	</group>
 </kcfg>
