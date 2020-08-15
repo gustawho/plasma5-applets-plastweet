@@ -154,8 +154,7 @@ class Twitter {
       method: 'POST',
       headers: postHeaders,
       body,
-    })
-      .then(Twitter._handleResponse);
+    }).then(Twitter._handleResponse);
   }
 
   /**

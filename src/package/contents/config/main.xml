@@ -6,10 +6,7 @@
 	<kcfgfile name=""/>
 
 	<group name="General">
-		<entry name="defaultCred" type="bool">
-			<label>Consumer Key</label>
-			<default>true</default>
-		</entry>
+		<!-- API settings -->
 		<entry name="consKey" type="String">
 			<label>Consumer Key</label>
 			<default></default>
@@ -26,6 +23,11 @@
 			<label>Access Token Secret</label>
 			<default></default>
 		</entry>
+		
+		<!-- Tray icon theme -->
+		<entry name="iconTheme" type="int">
+			<label>Icon theme</label>
+			<default>0</default>
+		</entry>
 	</group>
-
-</kcfg> 
+</kcfg>
