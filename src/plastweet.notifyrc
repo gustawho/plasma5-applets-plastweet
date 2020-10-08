@@ -20,6 +20,13 @@ Action=Popup
 [Event/authError]
 Name=Authentication problem
 Name[es]=Problema de autenticación
-Comment=There has been a problem validating your account
-Comment[es]=Ha ocurrido un error al validar tu cuenta
+Comment=A problem occurred validating your account
+Comment[es]=Ocurrió un problema al validar tu cuenta
+Action=Popup
+
+[Event/statusError]
+Name=Status problem
+Name[es]=Problema de estado
+Comment=A problem occurred updating your status
+Comment[es]=Ocurrió un problema al actualizar tu estado
 Action=Popup

@@ -105,7 +105,7 @@ bool BackEnd::execMain(
 	std::istringstream jsonDoc(api_response);
 	jsonDoc >> jsonResponse;
 	const Json::Value chError = jsonResponse["errors"];
-	// std::cout << chError << std::endl;
+	//std::cout << chError << std::endl;
 
 	// Verify account credentials
 	if (!chError.empty()) {
@@ -138,8 +138,8 @@ bool BackEnd::execMain(
 				twitter.getLastWebResponse(response);
 				
 				Json::Value uploadResponse;
-				std::istringstream jsonResponse(response);
-				jsonResponse >> uploadResponse;
+				std::istringstream tmpResponse(response);
+				tmpResponse >> uploadResponse;
 				std::string* media_id = new std::string[1] {uploadResponse.get("media_id", "NULL").asString()};
 
 				if (twitter.statusUpdateWithMedia(message, media_id, 1)) {
@@ -153,6 +153,12 @@ bool BackEnd::execMain(
 				}
 			} else {
 				std::cout << "(!!) Error uploading media: " + api_response << std::endl;
+				BackEnd::sendNotification(
+					QStringLiteral("statusError"),
+					QStringLiteral("error"),
+					i18n("Unable to upload selected media"),
+					i18n("Your media file could not be processed.")
+				);
 				return false;
 			}
 		}
