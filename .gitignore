@@ -1,8 +1,9 @@
 *.kdev4
 *.qmlc
-build
-BUILD
+build*
+BUILD*
 *.pro
 *.user
 *~
 *.backup
+.vscode
