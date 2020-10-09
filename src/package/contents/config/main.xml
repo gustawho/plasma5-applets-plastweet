@@ -23,15 +23,5 @@
 			<label>Access Token Secret</label>
 			<default></default>
 		</entry>
-		
-		<!-- Tray icon theme -->
-		<entry name="iconThemeLight" type="Bool">
-			<label>Use dark icon for light panels</label>
-			<default>true</default>
-		</entry>
-		<entry name="iconThemeDark" type="Bool">
-			<label>Use light icon for dark panels</label>
-			<default>false</default>
-		</entry>
 	</group>
 </kcfg>

@@ -41,7 +41,6 @@ Item {
 	readonly property string consumer_secret: plasmoid.configuration.consSec
 	readonly property string user_secret: plasmoid.configuration.accToken
 	readonly property string token_secret: plasmoid.configuration.accTokenSec
-	readonly property bool trayIcon: plasmoid.configuration.iconThemeLight
 	
 	Plasmoid.compactRepresentation: DragDrop.DropArea {
 		id: compactDropArea
@@ -60,10 +59,17 @@ Item {
 			onClicked: plasmoid.expanded = !plasmoid.expanded
 			
 			PlasmaCore.IconItem {
+				id: trayIcon
 				anchors.fill: parent
-				source: trayIcon ? "plastweet" : "plastweet-dark"
+				source: "plastweet"
 				colorGroup: PlasmaCore.ColorScope.colorGroup
 				active: parent.containsMouse
+			}
+			
+			ColorOverlay {
+				anchors.fill: trayIcon
+				source: trayIcon
+				color: theme.viewTextColor
 			}
 		}
 	}

@@ -12,8 +12,8 @@
    viewBox="0 0 5.8208332 5.8208335"
    version="1.1"
    id="svg8"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   sodipodi:docname="plastweet-alt.svg">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="plastweet.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="9.8977273"
-     inkscape:cx="26.055488"
-     inkscape:cy="-9.5625012"
+     inkscape:zoom="19.795455"
+     inkscape:cx="7.6696444"
+     inkscape:cy="9.4688149"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -34,29 +34,13 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1020"
+     inkscape:window-height="1025"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid854" />
-    <sodipodi:guide
-       position="0.79375,3.175"
-       orientation="1,0"
-       id="guide943" />
-    <sodipodi:guide
-       position="3.175,5.0270833"
-       orientation="0,-1"
-       id="guide945" />
-    <sodipodi:guide
-       position="3.1749999,0.79375002"
-       orientation="0,-1"
-       id="guide947" />
-    <sodipodi:guide
-       position="5.0270833,1.8520833"
-       orientation="1,0"
-       id="guide949" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -66,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -75,8 +59,8 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       id="rect1227"
-       style="fill:#232629;fill-opacity:1;stroke:none;stroke-width:0.0381894;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 0.79375017,1.3229167 v 3.175 H 2.3812502 l 0.529167,0.5291667 0.529166,-0.5291667 h 1.5875 v -3.175 z m 1.85208303,0.2645834 0.529167,0.5291666 0.529167,-0.5291666 0.529166,0.5291666 H 3.7041672 V 2.6458334 L 3.1750002,3.175 V 4.2333334 L 2.6458332,3.7041667 V 3.175 L 2.1166672,2.6458334 h -0.529167 z" />
+       d="M 1.6404168,2.4870834 2.4870834,3.33375 2.4870833,2.4870834 Z M 5.0270833,1.6404166 4.1804167,0.79375002 l 10e-8,0.84666658 z M 4.1804167,2.4870834 V 0.79375002 L 3.3337501,1.6404168 Z m -0.8466668,2.54 V 3.33375 L 2.4870833,4.1804168 Z M 2.4870833,0.79375002 0.79375005,2.4870834 l 1.69333335,-10e-8 z m 0,1.3e-7 10e-8,3.38666665 1.6933333,-1.6933334 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0218607;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect966-0-9-3-6-0" />
   </g>
 </svg>

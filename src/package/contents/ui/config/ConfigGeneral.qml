@@ -33,9 +33,6 @@ Item {
 	property alias cfg_consSec: consSec.text
 	property alias cfg_accToken: accToken.text
 	property alias cfg_accTokenSec: accTokenSec.text
-	property alias cfg_iconThemeLight: lightTheme.checked
-	property alias cfg_iconThemeDark: darkTheme.checked
-
 	
 	function configChanged() {
 		root.cfg_consKey = plasmoid.readConfig("consKey")
@@ -77,24 +74,6 @@ Item {
 			visible: true
 			text: i18n("Third-party clients have very limited access to Twitter with stricter rate limit and fewer features. It's recommended to use your own key. To do so, you first have to register a new application (if you don't already have one) <a href=\"https://apps.twitter.com\">here</a>.")
 			onLinkActivated: Qt.openUrlExternally(link)
-		}
-		
-		Kirigami.Separator {
-			Kirigami.FormData.isSection: true
-			Kirigami.FormData.label: i18n("Appearance")
-		}
-		
-		ColumnLayout {
-			Layout.rowSpan: 2
-			Kirigami.FormData.label: i18n("Tray icon theme:")
-			RadioButton {
-				id: lightTheme
-				text: i18n("Light")
-			}
-			RadioButton {
-				id: darkTheme
-				text: i18n("Dark")
-			}
 		}
 	}
 }
