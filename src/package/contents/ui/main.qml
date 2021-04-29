@@ -1,5 +1,5 @@
 /*
- *
+ * 
  * Copyright 2020 Gustavo Castro <gustawho@gmail.com>
  *
  * This file is part of Plastweet.
@@ -21,22 +21,24 @@
 
 // TODO:
 // * Add a progress bar for media upload
-import QtQuick 2.11
-import QtQuick.Layouts 1.1
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
 import QtQuick.Dialogs 1.3
 import QtGraphicalEffects 1.12
-
-import org.kde.draganddrop 2.0 as DragDrop
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.draganddrop 2.0 as DragDrop
 
 // C++ Backend
 import org.kde.plastweet 1.0
 
 Item {
 	id: main
+	
+	Plasmoid.backgroundHints: PlasmaCore.Types.DefaultBackground | PlasmaCore.Types.ConfigurableBackground
+	
 	readonly property string consumer_key: plasmoid.configuration.consKey
 	readonly property string consumer_secret: plasmoid.configuration.consSec
 	readonly property string user_secret: plasmoid.configuration.accToken
@@ -76,7 +78,8 @@ Item {
 	
 	Plasmoid.fullRepresentation: ColumnLayout {
 		id: fullRepresentation
-		anchors.fill: parent
+		
+		Layout.margins: PlasmaCore.Units.smallSpacing
 		
 		Layout.minimumHeight: units.gridUnit * 10
 		Layout.minimumWidth: units.gridUnit * 15
@@ -85,12 +88,6 @@ Item {
 		
 		BackEnd {
 			id: backend
-		}
-		
-		PlasmaComponents.Highlight {
-			id: delegateHighlight
-			visible: false
-			z: -1
 		}
 		
 		Connections {
@@ -116,6 +113,19 @@ Item {
 				Layout.fillHeight: true
 				placeholderText: i18n("What's happening?")
 				textColor: text.length >= 280 ? "red" : theme.viewTextColor
+				
+				PlasmaComponents.Label {
+					id: charCounter
+					anchors.bottom: inputQuery.bottom
+					anchors.right: inputQuery.right
+					anchors.rightMargin: 6
+					text: inputQuery.text.length
+					font.italic: true
+					visible: inputQuery.text.length <= 0 ? false : true
+					color: inputQuery.text.length >= 280 ? "red" : theme.viewTextColor
+					font.bold: inputQuery.text.length >= 280 ? true : false
+				}
+				
 				Rectangle {
 					id: dragIcon
 					Layout.fillWidth: true
@@ -129,9 +139,10 @@ Item {
 						anchors.verticalCenter: parent.verticalCenter
 						anchors.horizontalCenter: parent.horizontalCenter
 						color: theme.viewTextColor
-						text: i18n("Drop your image or video")
+						text: i18nc("@info", "Drop your image or video")
 					}
 				}
+				
 				DropArea {
 					id: dropArea;
 					anchors.fill: parent;
@@ -148,7 +159,7 @@ Item {
 					}
 					
 					onDropped: {
-						inputQuery.placeholderText = i18n("What's happening?");
+						inputQuery.placeholderText = i18nc("@info", "What's happening?");
 						dragIcon.visible = false;
 						
 						if (drop.hasUrls) {
@@ -162,28 +173,27 @@ Item {
 					
 					onExited: {
 						dragIcon.visible = false;
-						inputQuery.placeholderText = i18n("What's happening?");
+						inputQuery.placeholderText = i18nc("@info", "What's happening?");
 					}
 				}
-				
-				PlasmaComponents.Label {
-					id: charCounter
-					anchors.bottom: parent.bottom
-					anchors.right: parent.right
-					anchors.rightMargin: 6
-					text: inputQuery.text.length
-					font.italic: true
-					visible: inputQuery.text.length <= 0 ? false : true
-					color: inputQuery.text.length >= 280 ? "red" : theme.viewTextColor
-					font.bold: inputQuery.text.length >= 280 ? true : false
+			}
+			
+			Keys.onPressed: {
+				if(event.key == Qt.Key_Escape) {
+					plasmoid.expanded = false;
+					inputQuery.text = "";
+					event.accepted = true;
+				} else if((event.modifiers & Qt.ControlModifier) && (event.key == Qt.Key_Return)) {
+					sendTweetButton.clicked();
+					event.accepted = true;
 				}
 			}
 		}
 		
 		Rectangle {
+			id: imgCanvas
 			Layout.fillWidth: true
 			height: (parent.height)/2
-			id: imgCanvas
 			visible: false
 			color: theme.backgroundColor
 			border.color: theme.viewBackgroundColor
@@ -209,40 +219,60 @@ Item {
 					maskSource: mask
 				}
 				opacity: 0.75
+				
+				PlasmaComponents.Button {
+					id: removeImg
+					iconSource: "edit-delete-remove"
+					tooltip: i18nc("@info", "Remove media")
+					anchors.horizontalCenter: parent.horizontalCenter
+					anchors.verticalCenter: parent.verticalCenter
+					onClicked: {
+						fileDialog.close();
+						filepath = "";
+						previewFadeIn.running = false;
+						previewFadeOut.running = true;
+					}
+				}
 			}
 			
-			PlasmaComponents.Button {
-				id: removeImg
-				iconSource: "edit-delete-remove"
-				tooltip: i18n("Remove media")
-				anchors.horizontalCenter: parent.horizontalCenter
-				anchors.verticalCenter: parent.verticalCenter
-				onClicked: {
-					fileDialog.close();
-					filepath = "";
-					previewFadeIn.running = false;
-					previewFadeOut.running = true;
-				}
+			PropertyAnimation {
+				id: previewFadeIn;
+				target: imgCanvas;
+				property: "visible";
+				to: true;
+				easing.type: Easing.InOutQuad;
+				duration: 150;
+				running: false
+			}
+			
+			PropertyAnimation {
+				id: previewFadeOut;
+				target: imgCanvas;
+				property: "visible";
+				to: false;
+				easing.type: Easing.InOutQuad;
+				duration: 150;
+				running: false
 			}
 		}
 		
 		RowLayout {
 			id: bottomRowLayout
-			Layout.alignment: Qt.AlignRight
 			Layout.fillWidth: true
+			Layout.alignment: Qt.AlignRight
 			
-// 			TODO: Implement GIF browse/upload
-// 			PlasmaComponents.Button {
-// 				id: browseGifs
-// 				iconSource: "image-gif"
-// 				tooltip: i18n("Add a GIF")
-// 			}
+			// 			TODO: Implement GIF browse/upload
+			// 			PlasmaComponents.Button {
+			// 				id: browseGifs
+			// 				iconSource: "image-gif"
+			// 				tooltip: i18nc("@info", "Add a GIF")
+			// 			}
 			
 			FileDialog {
 				id: fileDialog
-				title: "Select an image or video to upload"
+				title: i18nc("@title", "Select an image or video to upload")
 				folder: shortcuts.home
-				nameFilters: [ i18n("Media files(*.jpg *.png *.gif *.bmp *.mp4)"), "All files(*)" ]
+				nameFilters: [ i18nc("@info", "Media files(*.jpg *.png *.gif *.bmp *.mp4)"), "All files(*)" ]
 				onAccepted: {
 					previewFadeIn.running = true;
 					imgPreview.source = fileDialog.fileUrl;
@@ -257,14 +287,14 @@ Item {
 			PlasmaComponents.Button {
 				id: selectImageButton
 				iconSource: "viewimage"
-				tooltip: i18n("Add a picture or video")
+				tooltip: i18nc("@info", "Add a picture or video")
 				onClicked: fileDialog.open()
 			}
 			
 			PlasmaComponents.Button {
 				id: sendTweetButton
-				text: i18n("Tweet")
-				tooltip: i18n("Send Tweet")
+				text: i18nc("@info", "Tweet")
+				tooltip: i18n("@info", "Send Tweet")
 				
 				function validateContent() {
 					var enableButton = false
@@ -287,20 +317,20 @@ Item {
 							var dummyMsg = " ";
 							backend.send_tweet(
 								dummyMsg,
-								filepath,
-								consumer_key,
-								consumer_secret,
-								user_secret,
-								token_secret
+							filepath,
+							consumer_key,
+							consumer_secret,
+							user_secret,
+							token_secret
 							);
 						} else {
 							backend.send_tweet(
 								inputQuery.text,
-								filepath,
-								consumer_key,
-								consumer_secret,
-								user_secret,
-								token_secret
+							filepath,
+							consumer_key,
+							consumer_secret,
+							user_secret,
+							token_secret
 							);
 						}
 					}
@@ -312,26 +342,6 @@ Item {
 					imgPreview.source = "";
 				}
 			}
-		}
-		
-		PropertyAnimation {
-			id: previewFadeIn;
-			target: imgCanvas;
-			property: "visible";
-			to: true;
-			easing.type: Easing.InOutQuad;
-			duration: 150;
-			running: false
-		}
-		
-		PropertyAnimation {
-			id: previewFadeOut;
-			target: imgCanvas;
-			property: "visible";
-			to: false;
-			easing.type: Easing.InOutQuad;
-			duration: 150;
-			running: false
 		}
 	}
 }

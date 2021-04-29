@@ -19,15 +19,13 @@
  *
  */
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
+import QtQuick 2.5
+import QtQuick.Controls 2.5 as QtControls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.4 as Kirigami
+import org.kde.kirigami 2.12 as Kirigami
 
-Item {
-	id: root
-	width: childrenRect.width
-	height: childrenRect.height
+Kirigami.FormLayout {
+	id: generalConfigPage
 	
 	property alias cfg_consKey: consKey.text
 	property alias cfg_consSec: consSec.text
@@ -42,38 +40,43 @@ Item {
 		plasmoid.backgroundHints = root.backgroundHints ? 1 : 0;
 	}
 	
-	Kirigami.FormLayout {
-		anchors.left: parent.left
-		anchors.right: parent.right
-		
-		TextField {
-			id: consKey
-			Kirigami.FormData.label: i18n("Consumer API keys:")
-			placeholderText: i18n("Consumer Key")
-			Layout.fillWidth: true
-		}
-		TextField {
-			id: consSec
-			placeholderText: i18n("Consumer Secret")
-			Layout.fillWidth: true
-		}
-		TextField {
-			id: accToken
-			Kirigami.FormData.label: i18n("Access token & access token secret:")
-			placeholderText: i18n("Access Token")
-			Layout.fillWidth: true
-		}
-		TextField {
-			id: accTokenSec
-			placeholderText: i18n("Access Token Secret")
-			Layout.fillWidth: true
-		}
-		
-		Kirigami.InlineMessage {
-			Layout.fillWidth: true
-			visible: true
-			text: i18n("Third-party clients have very limited access to Twitter with stricter rate limit and fewer features. It's recommended to use your own key. To do so, you first have to register a new application (if you don't already have one) <a href=\"https://apps.twitter.com\">here</a>.")
-			onLinkActivated: Qt.openUrlExternally(link)
-		}
+	Item {
+		Kirigami.FormData.isSection: true
+		Kirigami.FormData.label: i18nc("@title:group", "Compact Mode") 
+		visible: false
 	}
+	
+	QtControls.TextField {
+		id: consKey
+		Kirigami.FormData.label: i18nc("@label", "Consumer API keys:")
+		placeholderText: i18nc("@info", "Consumer Key")
+		Layout.fillWidth: true
+	}
+	
+	QtControls.TextField {
+		id: consSec
+		placeholderText: i18nc("@info", "Consumer Secret")
+		Layout.fillWidth: true
+	}
+	
+	QtControls.TextField {
+		id: accToken
+		Kirigami.FormData.label: i18nc("@label", "Access token & access token secret:")
+		placeholderText: i18nc("@info", "Access Token")
+		Layout.fillWidth: true
+	}
+	
+	QtControls.TextField {
+		id: accTokenSec
+		placeholderText: i18nc("@info", "Access Token Secret")
+		Layout.fillWidth: true
+	}
+	
+	Kirigami.InlineMessage {
+		Layout.fillWidth: true
+		visible: true
+		text: i18nc("@info", "Third-party clients have very limited access to Twitter with stricter rate limit and fewer features. It's recommended to use your own key. To do so, you first have to register a new application (if you don't already have one) <a href=\"https://apps.twitter.com\">here</a>.")
+		onLinkActivated: Qt.openUrlExternally(link)
+	}
+
 }

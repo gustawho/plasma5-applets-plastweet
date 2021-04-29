@@ -29,12 +29,12 @@ import "../ui" as UI
 
 ConfigModel {
 	ConfigCategory {
-		name: i18n('General')
+		name: i18nc("@title", "General")
 		icon: 'preferences-other'
 		source: 'config/ConfigGeneral.qml'
 	}
 // 	ConfigCategory {
-// 		name: i18n('Notifications')
+// 		name: i18nc("@title", "Notifications")
 // 		icon: 'preferences-desktop-notifications'
 // 		source: 'config/ConfigNotifications.qml'
 // 	}
