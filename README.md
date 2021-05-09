@@ -23,8 +23,8 @@ Currently, posting tweets (both text only and with one image attached) is the on
 
 * Kubuntu, KDE Neon:
 ```
-sudo apt install build-essential cmake extra-cmake-modules plasma-workspace-dev \
-  gettext libkf5notifyconfig-dev libkf5notifications-dev libcurl4-gnutls-dev libjsoncpp-dev
+sudo apt install build-essential cmake extra-cmake-modules plasma-workspace-dev qtquickcontrols2-5-dev \
+  kirigami2-dev gettext libkf5notifyconfig-dev libkf5notifications-dev libcurl4-gnutls-dev libjsoncpp-dev qtwebengine5-dev
 ```
 > Note: JsonCpp headers might be located in a different path than the one referenced in Plastweet's code. If build fails, please open `src/plugin/backend.cpp` and fix the `#include` lines, then try again.
 
