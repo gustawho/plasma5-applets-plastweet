@@ -15,8 +15,8 @@ X-Plasma-NotificationArea=true
 
 X-KDE-PluginInfo-Author=Gustavo Castro
 X-KDE-PluginInfo-Email=gustawho@gmail.com
-X-KDE-PluginInfo-License=GPL3
+X-KDE-PluginInfo-License=GPLv3
 X-KDE-PluginInfo-Name=org.kde.plastweet
 X-KDE-PluginInfo-Version=1.0
-X-KDE-PluginInfo-Website=https://github.com/gustawho/org.kde.plastweet
+X-KDE-PluginInfo-Website=https://github.com/gustawho/plasma5-applets-plastweet
 X-KDE-PluginInfo-Category=Online Services
