@@ -111,8 +111,8 @@ Item {
 				wrapMode: TextEdit.Wrap
 				Layout.fillWidth: true
 				Layout.fillHeight: true
-				placeholderText: i18n("What's happening?")
-				textColor: text.length >= 280 ? "red" : theme.viewTextColor
+				placeholderText: i18nc("@info", "What's happening?")
+				textColor: text.length >= 280 ? theme.negativeTextColor : theme.viewTextColor
 				
 				PlasmaComponents.Label {
 					id: charCounter
@@ -122,7 +122,7 @@ Item {
 					text: inputQuery.text.length
 					font.italic: true
 					visible: inputQuery.text.length <= 0 ? false : true
-					color: inputQuery.text.length >= 280 ? "red" : theme.viewTextColor
+					color: inputQuery.text.length >= 280 ? theme.negativeTextColor : theme.viewTextColor
 					font.bold: inputQuery.text.length >= 280 ? true : false
 				}
 				
@@ -133,7 +133,7 @@ Item {
 					color: "transparent"
 					anchors.verticalCenter: parent.verticalCenter
 					anchors.horizontalCenter: parent.horizontalCenter
-					radius: 2
+					radius: 3
 					visible: false
 					PlasmaComponents.Label {
 						anchors.verticalCenter: parent.verticalCenter
@@ -196,14 +196,14 @@ Item {
 			height: (parent.height)/2
 			visible: false
 			color: theme.backgroundColor
-			border.color: theme.viewBackgroundColor
-			radius: 2
+			border.color: theme.disabledTextColor
+			radius: 3
 			
 			Rectangle {
 				id: mask
 				width: parent.width
-				height: width
-				radius: 2
+				height: parent.height
+				radius: 3
 				visible: false
 			}
 			
@@ -272,12 +272,15 @@ Item {
 				id: fileDialog
 				title: i18nc("@title", "Select an image or video to upload")
 				folder: shortcuts.home
-				nameFilters: [ i18nc("@info", "Media files(*.jpg *.png *.gif *.bmp *.mp4)"), "All files(*)" ]
+				// selectMultiple: true
+				nameFilters: [ i18nc("@info", "Media files (*.jpg *.png *.gif *.bmp *.mp4)"), "All files (*)" ]
+				
 				onAccepted: {
 					previewFadeIn.running = true;
 					imgPreview.source = fileDialog.fileUrl;
 					filepath = fileDialog.fileUrl;
 				}
+				
 				onRejected: {
 					console.log("Cannot open selected file, try again.")
 				}
@@ -294,7 +297,7 @@ Item {
 			PlasmaComponents.Button {
 				id: sendTweetButton
 				text: i18nc("@info", "Tweet")
-				tooltip: i18n("@info", "Send Tweet")
+				tooltip: i18nc("@info", "Send Tweet")
 				
 				function validateContent() {
 					var enableButton = false
