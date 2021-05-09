@@ -7,3 +7,4 @@ BUILD
 *.user
 *~
 .vscode
+.clang-format
