@@ -51,7 +51,7 @@ Item {
 		
 		Timer {
 			id: activationTimer
-			interval: 250 // matches taskmanager delay
+			interval: 250
 			onTriggered: plasmoid.expanded = true
 		}
 		
@@ -261,12 +261,12 @@ Item {
 			Layout.fillWidth: true
 			Layout.alignment: Qt.AlignRight
 			
-			// 			TODO: Implement GIF browse/upload
-			// 			PlasmaComponents.Button {
-			// 				id: browseGifs
-			// 				iconSource: "image-gif"
-			// 				tooltip: i18nc("@info", "Add a GIF")
-			// 			}
+			// TODO: Implement GIF browse/upload
+			/*PlasmaComponents.Button {
+				id: browseGifs
+				iconSource: "image-gif"
+				tooltip: i18nc("@info", "Add a GIF")
+			}*/
 			
 			FileDialog {
 				id: fileDialog
@@ -281,6 +281,7 @@ Item {
 					filepath = fileDialog.fileUrl;
 				}
 				
+				// TODO: Replace with a plasma dialog
 				onRejected: {
 					console.log("Cannot open selected file, try again.")
 				}
@@ -320,20 +321,20 @@ Item {
 							var dummyMsg = " ";
 							backend.send_tweet(
 								dummyMsg,
-							filepath,
-							consumer_key,
-							consumer_secret,
-							user_secret,
-							token_secret
+								filepath,
+								consumer_key,
+								consumer_secret,
+								user_secret,
+								token_secret
 							);
 						} else {
 							backend.send_tweet(
 								inputQuery.text,
-							filepath,
-							consumer_key,
-							consumer_secret,
-							user_secret,
-							token_secret
+								filepath,
+								consumer_key,
+								consumer_secret,
+								user_secret,
+								token_secret
 							);
 						}
 					}

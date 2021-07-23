@@ -13,11 +13,11 @@ The primary goal of this project is to bring the ability to quickly send tweets 
 ## Dependencies
 * cURL
 * [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
-* Qt5 GraphicalEffects
+* Qt5 GraphicalEffects (runtime dependency)
 * KF5 & Plasma
 
 ## Installation
-Currently, posting tweets (both text only and with one image attached) is the only available feature and as OAuth login isn't implemented yet, you need to register an application in [apps.twitter.com](https://apps.twitter.com) and configure the plasmoid accordingly.
+Currently, posting tweets (both text only and with one image attached) is the only available feature and as OAuth login isn't implemented yet, you need to register an application in [developer.twitter.com](https://developer.twitter.com/apps) and configure the plasmoid accordingly.
 
 ### Package dependencies
 
@@ -43,12 +43,9 @@ sudo zypper in git extra-cmake-modules jsoncpp-devel libcurl-devel \
 ### Build
 ```bash
 git clone https://github.com/gustawho/plasma5-applets-plastweet.git
-cd plasma5-applets-plastweet
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
-make
-sudo make install
+cmake -B build -S . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug -S plasma5-applets-plastweet
+cmake --build build --config Debug
+sudo cmake --install build --config Debug
 ```
 
 ## Planned Features

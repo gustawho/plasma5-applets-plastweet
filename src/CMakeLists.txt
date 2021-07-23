@@ -6,5 +6,5 @@ add_subdirectory(plugin)
 add_subdirectory(translations)
 
 install(FILES plastweet.notifyrc DESTINATION ${KNOTIFYRC_INSTALL_DIR})
-install(FILES ../img/plastweet.svg DESTINATION /usr/share/icons/hicolor/scalable/apps)
-install(FILES ../img/plastweet-tray.svg DESTINATION /usr/share/icons/hicolor/22x22/apps)
+install(FILES ../img/plastweet.svg DESTINATION ${ICONDIR}/hicolor/scalable/apps)
+install(FILES ../img/plastweet-tray.svg DESTINATION ${ICONDIR}/hicolor/22x22/apps)
